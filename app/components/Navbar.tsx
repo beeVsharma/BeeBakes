@@ -18,7 +18,11 @@ const navLinks: NavLink[] = [
   { name: "Notes", href: "#testimonials", id: "testimonials" },
 ];
 
-export default function Navbar({ onOpenCustomOrder }: { onOpenCustomOrder: () => void }) {
+export default function Navbar({
+  onOpenCustomOrder,
+}: {
+  onOpenCustomOrder: () => void;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
@@ -98,6 +102,18 @@ export default function Navbar({ onOpenCustomOrder }: { onOpenCustomOrder: () =>
     hamburgerRef.current?.focus();
   };
 
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    id: string,
+  ) => {
+    e.preventDefault();
+    closeMobileMenu();
+    // scroll after menu-close animation + body scroll-lock cleared
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -110,8 +126,15 @@ export default function Navbar({ onOpenCustomOrder }: { onOpenCustomOrder: () =>
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-8">
-        <a href="#home" className="group flex items-center gap-3" aria-label="Bee Bakes by Vartika — Home">
-          <div className="relative h-10 w-10 overflow-hidden rounded-full md:h-12 md:w-12" aria-hidden="true">
+        <a
+          href="#home"
+          className="group flex items-center gap-3"
+          aria-label="Bee Bakes by Vartika — Home"
+        >
+          <div
+            className="relative h-10 w-10 overflow-hidden rounded-full md:h-12 md:w-12"
+            aria-hidden="true"
+          >
             <Image
               src="/images/logo.jpg"
               alt="Bee Bakes Logo"
@@ -125,11 +148,16 @@ export default function Navbar({ onOpenCustomOrder }: { onOpenCustomOrder: () =>
             <span className="block text-lg font-semibold tracking-tight text-[var(--color-text-dark)] md:text-2xl">
               Bee Bakes
             </span>
-            <span className="block text-[0.72rem] italic text-[var(--color-gold)] md:text-sm">by Vartika</span>
+            <span className="block text-[0.72rem] italic text-[var(--color-gold)] md:text-sm">
+              by Vartika
+            </span>
           </span>
         </a>
 
-        <nav aria-label="Main navigation" className="hidden items-center gap-2 md:flex">
+        <nav
+          aria-label="Main navigation"
+          className="hidden items-center gap-2 md:flex"
+        >
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
 
@@ -166,7 +194,11 @@ export default function Navbar({ onOpenCustomOrder }: { onOpenCustomOrder: () =>
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-menu"
         >
-          {mobileMenuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
+          {mobileMenuOpen ? (
+            <X className="h-5 w-5" aria-hidden="true" />
+          ) : (
+            <Menu className="h-5 w-5" aria-hidden="true" />
+          )}
         </button>
       </div>
 
@@ -188,7 +220,7 @@ export default function Navbar({ onOpenCustomOrder }: { onOpenCustomOrder: () =>
                   <a
                     key={link.name}
                     href={link.href}
-                    onClick={closeMobileMenu}
+                    onClick={(e) => handleNavClick(e, link.id)}
                     className={`rounded-2xl px-4 py-3 text-base font-medium ${
                       isActive
                         ? "bg-[var(--color-gold)]/10 text-[var(--color-gold)]"
