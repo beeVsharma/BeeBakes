@@ -1,0 +1,576 @@
+- generic [active] [ref=e1]:
+    - link "Skip to content" [ref=e2] [cursor=pointer]:
+        - /url: "#content"
+    - generic [ref=e3]:
+        - img "Bee Bakes by Vartika" [ref=e11]
+        - generic [ref=e12]:
+            - paragraph [ref=e13]: Bee Bakes
+            - paragraph [ref=e14]: by Vartika
+        - paragraph [ref=e15]: Baking something special…
+        - generic [ref=e16]:
+            - paragraph [ref=e17]: Welcome
+            - paragraph [ref=e18]: All cake designs shown on this website are AI-generated concept illustrations. Every cake you order is hand-crafted fresh, exactly to your design.
+        - generic "Loading" [ref=e19]
+    - generic:
+        - main:
+            - generic:
+                - generic:
+                    - link "Bee Bakes by Vartika — Home":
+                        - /url: "#home"
+                        - generic:
+                            - generic: Bee Bakes
+                            - generic: by Vartika
+                    - navigation "Main navigation":
+                        - link "Home":
+                            - /url: "#home"
+                        - link "Creations":
+                            - /url: "#products"
+                        - link "Custom":
+                            - /url: "#custom-cakes"
+                        - link "Notes":
+                            - /url: "#testimonials"
+                        - button "Order now"
+            - generic:
+                - generic:
+                    - generic:
+                        - generic:
+                            - paragraph: Bikaner bakery studio
+                            - heading "Custom cakes with a calmer, cleaner finish" [level=1]
+                            - paragraph: Eggless cakes, artisan cookies, and dessert boxes baked fresh in Bikaner. The result stays polished, practical, and easy to coordinate from first message to final handoff.
+                            - generic:
+                                - link "Browse the collection":
+                                    - /url: "#products"
+                                - link "Start a custom order":
+                                    - /url: "#custom-cakes"
+                            - generic:
+                                - generic:
+                                    - paragraph: Turnaround
+                                    - paragraph: 24 to 48 hours
+                                - generic:
+                                    - paragraph: Style
+                                    - paragraph: Clean, elegant, eggless
+                                - generic:
+                                    - paragraph: Ordering
+                                    - paragraph: WhatsApp coordination
+                        - generic:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "A tall custom celebration cake finished with clean floral decoration"
+                                - generic:
+                                    - generic:
+                                        - generic:
+                                            - img "Belgian Chocolate Bliss cake"
+                                    - generic:
+                                        - generic:
+                                            - img "Artisan chocolate chip cookies"
+                            - generic:
+                                - paragraph: Handcrafted in Bikaner
+                                - paragraph: Eggless custom cakes, fresh artisan cookies, and celebration dessert boxes.
+            - generic:
+                - generic:
+                    - generic:
+                        - paragraph: Why it feels different
+                        - heading "A quieter bakery workflow, presented with more care" [level=2]
+                        - paragraph: We keep the page and the process lightweight. The aim is less visual noise, clearer ordering, and a better sense of what you are actually buying.
+                    - generic:
+                        - generic:
+                            - heading "Careful ingredient selection" [level=3]
+                            - paragraph: Fresh dairy, balanced sweetness, and a finish that travels well.
+                        - generic:
+                            - heading "Fast, practical turnaround" [level=3]
+                            - paragraph: Most standard orders can be confirmed without a long back and forth.
+                        - generic:
+                            - heading "Custom finishes" [level=3]
+                            - paragraph: Clean decoration, tiered cakes, and gift-ready packaging when needed.
+                        - generic:
+                            - heading "Local delivery support" [level=3]
+                            - paragraph: Built for Bikaner orders that need a simple, reliable handoff.
+            - generic:
+                - generic:
+                    - generic:
+                        - generic:
+                            - paragraph: Featured Cakes
+                            - heading "Our most talked-about cakes, baked fresh" [level=2]
+                        - paragraph: A curated edit of our viral sensations and house favorites. Crafted with premium ingredients and designed for tables that deserve a memorable center piece.
+                    - generic:
+                        - button "View details for London Viral Whipped Caramel Cream Cake":
+                            - generic:
+                                - generic:
+                                    - generic: Eggless
+                                    - img "London Viral Whipped Caramel Cream Cake"
+                                - generic:
+                                    - generic:
+                                        - heading "London Viral Whipped Caramel Cream Cake" [level=3]
+                                        - paragraph: Whipped cream caramel cake with rich gold caramel drip
+                                    - generic:
+                                        - paragraph: Rs 700
+                                        - generic: See details
+                        - button "View details for Tiramisu Cake":
+                            - generic:
+                                - generic:
+                                    - generic: Eggless
+                                    - img "Tiramisu Cake"
+                                - generic:
+                                    - generic:
+                                        - heading "Tiramisu Cake" [level=3]
+                                        - paragraph: Dusted with dark cocoa, layered with espresso-soaked ladyfingers
+                                    - generic:
+                                        - paragraph: Rs 600
+                                        - generic: See details
+                        - button "View details for Coffee Mocha Cake":
+                            - generic:
+                                - generic:
+                                    - generic: Eggless
+                                    - img "Coffee Mocha Cake"
+                                - generic:
+                                    - generic:
+                                        - heading "Coffee Mocha Cake" [level=3]
+                                        - paragraph: Round chocolate espresso cake with mocha swirl frosting
+                                    - generic:
+                                        - paragraph: Rs 500
+                                        - generic: See details
+            - generic:
+                - generic:
+                    - generic:
+                        - generic:
+                            - generic:
+                                - img "A custom celebration cake with neat finishing and layered decoration"
+                            - generic: Custom made
+                    - generic:
+                        - paragraph: Made just for you
+                        - heading "Custom cakes for birthdays, anniversaries, and the events in between" [level=2]
+                        - paragraph: Share the theme, flavor, and size. We turn that into a cake that fits the table instead of trying to overpower it. The result should look deliberate, travel well, and taste fresh.
+                        - generic:
+                            - generic:
+                                - paragraph: Personalized design
+                                - paragraph: Share references, colors, and a rough mood.
+                            - generic:
+                                - paragraph: Fresh ingredients
+                                - paragraph: Everything is baked close to the delivery window.
+                        - list:
+                            - listitem:
+                                - generic: Best for celebration cakes, gift orders, and smaller tiered builds.
+                            - listitem:
+                                - generic: Choose from chocolate, fruit, vanilla, and richer dessert-style finishes.
+                            - listitem:
+                                - generic: WhatsApp confirmation keeps the ordering flow fast and easy to track.
+                        - button "Design your cake"
+            - generic:
+                - generic:
+                    - generic:
+                        - generic:
+                            - paragraph: Curated range
+                            - heading "Explore a focused range that still feels complete" [level=2]
+                        - paragraph: A curated selection across our most-loved categories — pick a tab to find what suits your occasion, whether it is a birthday, a gift, or a simple treat.
+                    - tablist "Filter by cake category":
+                        - tab "All Items" [selected]
+                        - tab "Regular Flavours"
+                        - tab "Nutty Flavours"
+                        - tab "Cheesecakes"
+                        - tab "Cookies"
+                    - generic:
+                        - paragraph: Showing 21 items
+                        - paragraph: Live updates based on the selected category
+                    - generic:
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Vanilla Cake"
+                                    - generic:
+                                        - paragraph: Regular Flavours
+                                        - generic:
+                                            - heading "Vanilla Cake" [level=3]
+                                            - paragraph: Rs 400
+                                        - paragraph: Simple vanilla sponge with a clean and classic design.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Butterscotch Cake"
+                                    - generic:
+                                        - paragraph: Regular Flavours
+                                        - generic:
+                                            - heading "Butterscotch Cake" [level=3]
+                                            - paragraph: Rs 500
+                                        - paragraph: Vanilla sponge with butterscotch chunks and gold caramel.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Regular Chocolate Cake"
+                                    - generic:
+                                        - paragraph: Regular Flavours
+                                        - generic:
+                                            - heading "Regular Chocolate Cake" [level=3]
+                                            - paragraph: Rs 450
+                                        - paragraph: Rich cocoa layers frosted with smooth chocolate cream.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Chocolate Truffle Cake"
+                                    - generic:
+                                        - paragraph: Regular Flavours
+                                        - generic:
+                                            - heading "Chocolate Truffle Cake" [level=3]
+                                            - paragraph: Rs 550
+                                        - paragraph: Dense chocolate sponge finished with a dark ganache glaze.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Red Velvet Cake"
+                                    - generic:
+                                        - paragraph: Regular Flavours
+                                        - generic:
+                                            - heading "Red Velvet Cake" [level=3]
+                                            - paragraph: Rs 420
+                                        - paragraph: Soft velvet sponge with cream cheese layers and crumbs.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "White & Black Forest Cake"
+                                    - generic:
+                                        - paragraph: Regular Flavours
+                                        - generic:
+                                            - heading "White & Black Forest Cake" [level=3]
+                                            - paragraph: Rs 400
+                                        - paragraph: Creamy forest classic loaded with cherries and chocolate curls.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Fresh Fruit Cake"
+                                    - generic:
+                                        - paragraph: Regular Flavours
+                                        - generic:
+                                            - heading "Fresh Fruit Cake" [level=3]
+                                            - paragraph: Rs 500
+                                        - paragraph: Fresh fruit-topped whipped cream cake based on customer preferences.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Almond Pistachio Cream Cake"
+                                    - generic:
+                                        - paragraph: Nutty Flavours
+                                        - generic:
+                                            - heading "Almond Pistachio Cream Cake" [level=3]
+                                            - paragraph: Rs 550
+                                        - paragraph: Light green cake coated with pistachio chunks and sliced almonds.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Walnut Fudge Brownie Cake"
+                                    - generic:
+                                        - paragraph: Nutty Flavours
+                                        - generic:
+                                            - heading "Walnut Fudge Brownie Cake" [level=3]
+                                            - paragraph: Rs 500
+                                        - paragraph: Thick fudge brownie layers topped with toasted walnuts.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Hazelnut Cream Cake"
+                                    - generic:
+                                        - paragraph: Nutty Flavours
+                                        - generic:
+                                            - heading "Hazelnut Cream Cake" [level=3]
+                                            - paragraph: Rs 520
+                                        - paragraph: Hazelnut cream base with roasted hazelnut pieces on top.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Dryfruits Cream Cake"
+                                    - generic:
+                                        - paragraph: Nutty Flavours
+                                        - generic:
+                                            - heading "Dryfruits Cream Cake" [level=3]
+                                            - paragraph: Rs 650
+                                        - paragraph: Loaded with saffron cream and crushed almonds, cashews, and pistachios.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "New York Style Cheesecake"
+                                    - generic:
+                                        - paragraph: Cheesecakes
+                                        - generic:
+                                            - heading "New York Style Cheesecake" [level=3]
+                                            - paragraph: Rs 750
+                                        - paragraph: Traditional baked cream cheese on a crunchy graham crust.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Biscoff Cheesecake"
+                                    - generic:
+                                        - paragraph: Cheesecakes
+                                        - generic:
+                                            - heading "Biscoff Cheesecake" [level=3]
+                                            - paragraph: Rs 800
+                                        - paragraph: Baked cheesecake covered with speculoos Biscoff cookie spread.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Nutella Cheesecake"
+                                    - generic:
+                                        - paragraph: Cheesecakes
+                                        - generic:
+                                            - heading "Nutella Cheesecake" [level=3]
+                                            - paragraph: Rs 800
+                                        - paragraph: Smooth cheesecake topped with a rich layer of Nutella spread.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Blueberry Cheesecake"
+                                    - generic:
+                                        - paragraph: Cheesecakes
+                                        - generic:
+                                            - heading "Blueberry Cheesecake" [level=3]
+                                            - paragraph: Rs 770
+                                        - paragraph: Creamy cheesecake topped with a sweet, glossy blueberry compote.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Strawberry Cheesecake"
+                                    - generic:
+                                        - paragraph: Cheesecakes
+                                        - generic:
+                                            - heading "Strawberry Cheesecake" [level=3]
+                                            - paragraph: Rs 770
+                                        - paragraph: Creamy cheesecake topped with a sweet, glossy strawberry compote.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Chocolate Cookies"
+                                    - generic:
+                                        - paragraph: Cookies
+                                        - generic:
+                                            - heading "Chocolate Cookies" [level=3]
+                                            - paragraph: Rs 220
+                                        - paragraph: Thick double-chocolate chip cookies baked with pure butter.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Hazelnut Nutella Cookies"
+                                    - generic:
+                                        - paragraph: Cookies
+                                        - generic:
+                                            - heading "Hazelnut Nutella Cookies" [level=3]
+                                            - paragraph: Rs 250
+                                        - paragraph: Golden cookies filled with Nutella and topped with chopped hazelnuts.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Biscoff Cookies"
+                                    - generic:
+                                        - paragraph: Cookies
+                                        - generic:
+                                            - heading "Biscoff Cookies" [level=3]
+                                            - paragraph: Rs 250
+                                        - paragraph: Chewy speculoos cookies infused with crunchy Lotus biscuit bits.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Coconut Cookies"
+                                    - generic:
+                                        - paragraph: Cookies
+                                        - generic:
+                                            - heading "Coconut Cookies" [level=3]
+                                            - paragraph: Rs 220
+                                        - paragraph: Toasted shredded coconut cookies baked golden with ghee/butter.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - generic:
+                                    - generic:
+                                        - img "Coffee Cookies"
+                                    - generic:
+                                        - paragraph: Cookies
+                                        - generic:
+                                            - heading "Coffee Cookies" [level=3]
+                                            - paragraph: Rs 220
+                                        - paragraph: Infused with rich coffee grounds for an aromatic baked bite.
+                                - generic: See details
+                        - article:
+                            - generic:
+                                - text: Custom Orders
+                                - heading "Looking for customization?" [level=3]
+                                - paragraph: We offer complete personalization for all cakes including custom themes, shapes, eggless builds, and special sizing according to your choice.
+                                - list:
+                                    - listitem:
+                                        - generic: Choose custom sizes & layers
+                                    - listitem:
+                                        - generic: Personalized photo & name toppers
+                                    - listitem:
+                                        - generic: 100% Eggless builds available
+                                    - listitem:
+                                        - generic: Custom theme designs & colors
+                            - link "Ask on WhatsApp":
+                                - /url: https://wa.me/918866785016?text=Hi%20Bee%20Bakes%2C%20I%20would%20like%20to%20place%20a%20customized%20order.
+            - generic:
+                - generic:
+                    - generic:
+                        - generic:
+                            - paragraph: Simple ordering
+                            - heading "Three steps, without the usual back-and-forth" [level=2]
+                        - paragraph: Pick a cake, share your details, and let us handle the finish. The process stays lightweight so you can move from idea to order without filling out a long form.
+                    - generic:
+                        - article:
+                            - generic: "1"
+                            - heading "Choose your cake" [level=3]
+                            - paragraph: Browse the signature edit or ask for a custom design if you already know the occasion and flavor.
+                        - article:
+                            - generic: "2"
+                            - heading "Share the details" [level=3]
+                            - paragraph: Send size, flavor, occasion, and any reference notes. We keep the form short and practical.
+                        - article:
+                            - generic: "3"
+                            - heading "Confirm and receive" [level=3]
+                            - paragraph: We confirm the order on WhatsApp and keep the delivery or pickup steps easy to follow.
+            - generic:
+                - generic:
+                    - generic:
+                        - generic:
+                            - paragraph: Customer notes
+                            - heading "Feedback that tells the real story" [level=2]
+                        - paragraph: A good bakery page needs proof that feels specific. These notes lean toward clear details instead of polished slogans.
+                    - generic:
+                        - article:
+                            - paragraph: Featured note
+                            - generic "5 out of 5 stars"
+                            - paragraph: “The cake looked neat on the table and held up well on the drive home. It was sweet without feeling heavy.”
+                            - generic:
+                                - paragraph: Riya Puri
+                                - paragraph: Birthday order
+                        - generic:
+                            - article:
+                                - generic "5 out of 5 stars"
+                                - paragraph: “We asked for a red velvet finish with a simple look. The result felt clean, not overdecorated, and the whole family liked it.”
+                                - generic:
+                                    - paragraph: Abhishek Pandey
+                                    - paragraph: Family celebration
+                            - article:
+                                - generic "4 out of 5 stars"
+                                - paragraph: “The cookie box was fresh and well packed. It worked as a small office gift and did not feel generic.”
+                                - generic:
+                                    - paragraph: Harleen Kaur
+                                    - paragraph: Corporate order
+                        - generic:
+                            - article:
+                                - generic "5 out of 5 stars"
+                                - paragraph: “The order moved through WhatsApp quickly, and the size guidance was practical. That made the decision easy.”
+                                - generic:
+                                    - paragraph: Preet Singh
+                                    - paragraph: Custom cake
+                            - article:
+                                - generic "5 out of 5 stars"
+                                - paragraph: “The tin cake was the part people remembered because it looked thoughtful and arrived without damage.”
+                                - generic:
+                                    - paragraph: Tara Sharma
+                                    - paragraph: Gift order
+            - generic:
+                - generic:
+                    - generic:
+                        - generic:
+                            - paragraph: Behind the counter
+                            - heading "A visual feed that feels a little more like a mosaic" [level=2]
+                        - paragraph: Each piece here is a real Bee Bakes creation — cakes, cookies, and dessert boxes that left our kitchen and made it to someone’s table or celebration.
+                    - generic:
+                        - link "Vanilla layered cake with fresh berries on top — view on Instagram (opens in new tab)":
+                            - /url: https://www.instagram.com/beebakes_vartika/
+                            - img "Vanilla layered cake with fresh berries on top"
+                            - generic:
+                                - paragraph: View on Instagram
+                        - link "Artisan cookie box gift set, neatly packaged — view on Instagram (opens in new tab)":
+                            - /url: https://www.instagram.com/beebakes_vartika/
+                            - img "Artisan cookie box gift set, neatly packaged"
+                            - generic:
+                                - paragraph: View on Instagram
+                        - link "Caramel and butterscotch cake with clean finish — view on Instagram (opens in new tab)":
+                            - /url: https://www.instagram.com/beebakes_vartika/
+                            - img "Caramel and butterscotch cake with clean finish"
+                            - generic:
+                                - paragraph: View on Instagram
+                    - generic:
+                        - link "View more on Instagram (opens in new tab)":
+                            - /url: https://www.instagram.com/beebakes_vartika/
+                            - text: View more on Instagram
+                            - generic: (opens in new tab)
+            - generic:
+                - generic:
+                    - generic:
+                        - heading "Bee Bakes by Vartika" [level=3]:
+                            - text: Bee Bakes
+                            - generic: by Vartika
+                        - paragraph: Eggless custom cakes, artisan cookies, and dessert boxes baked for celebrations that need a clean finish and reliable timing.
+                        - generic:
+                            - link "Call":
+                                - /url: tel:+918866785016
+                            - link "WhatsApp":
+                                - /url: https://wa.me/918866785016?text=Hi%20Bee%20Bakes%2C%20I%20would%20like%20to%20place%20an%20order.
+                            - link "Email":
+                                - /url: mailto:beebakes.sharma97@gmail.com
+                    - generic:
+                        - heading "Quick links" [level=4]
+                        - list:
+                            - listitem:
+                                - link "Our cakes":
+                                    - /url: "#products"
+                            - listitem:
+                                - link "Custom cakes":
+                                    - /url: "#custom-cakes"
+                            - listitem:
+                                - link "Customer notes":
+                                    - /url: "#testimonials"
+                            - listitem:
+                                - link "Privacy policy":
+                                    - /url: /privacy
+                            - listitem:
+                                - link "Terms of service":
+                                    - /url: /terms
+                    - generic:
+                        - heading "Visit" [level=4]
+                        - list:
+                            - listitem: Premium Cloud Bakery
+                            - listitem: Bikaner, Rajasthan
+                            - listitem: Order slot confirmation on WhatsApp
+                    - generic:
+                        - heading "Follow" [level=4]
+                        - link "Instagram (opens in new tab)":
+                            - /url: https://www.instagram.com/beebakes_vartika/
+                            - text: Instagram
+                            - generic: (opens in new tab)

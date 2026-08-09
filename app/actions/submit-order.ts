@@ -6,24 +6,58 @@ import { headers } from "next/headers";
 // ── Rate limiting ──
 // ponytail: in-memory map, resets on server restart. Swap with Redis if deployed multi-instance.
 
-const rateMap = new Map<string, { count30s: number; ts30s: number; countH: number; tsH: number; countD: number; tsD: number }>();
+const rateMap = new Map<
+  string,
+  {
+    count30s: number;
+    ts30s: number;
+    countH: number;
+    tsH: number;
+    countD: number;
+    tsD: number;
+  }
+>();
 
 function rateLimit(ip: string): { ok: false; error: string } | { ok: true } {
   const now = Date.now();
   const entry = rateMap.get(ip) ?? {
-    count30s: 0, ts30s: now,
-    countH: 0, tsH: now,
-    countD: 0, tsD: now,
+    count30s: 0,
+    ts30s: now,
+    countH: 0,
+    tsH: now,
+    countD: 0,
+    tsD: now,
   };
 
   // Reset windows
-  if (now - entry.ts30s > 30000) { entry.count30s = 0; entry.ts30s = now; }
-  if (now - entry.tsH > 3600000) { entry.countH = 0; entry.tsH = now; }
-  if (now - entry.tsD > 86400000) { entry.countD = 0; entry.tsD = now; }
+  if (now - entry.ts30s > 30000) {
+    entry.count30s = 0;
+    entry.ts30s = now;
+  }
+  if (now - entry.tsH > 3600000) {
+    entry.countH = 0;
+    entry.tsH = now;
+  }
+  if (now - entry.tsD > 86400000) {
+    entry.countD = 0;
+    entry.tsD = now;
+  }
 
-  if (entry.count30s >= 3) return { ok: false, error: "Thoda ruko — 30 sec me ek baar baat karte hain 🐝" };
-  if (entry.countH >= 10) return { ok: false, error: "Aaj kaafi ho gaye! Kal fir se baat karte hain 😊" };
-  if (entry.countD >= 25) return { ok: false, error: "Aaj ka limit ho gaya. Kal naya order bhejna 🙏" };
+  if (entry.count30s >= 3)
+    return {
+      ok: false,
+      error: "Thoda ruko — 30 sec me ek baar baat karte hain 🐝",
+    };
+  if (entry.countH >= 10)
+    return {
+      ok: false,
+      error: "Aaj kaafi ho gaye! Kal fir se baat karte hain 😊",
+    };
+  if (entry.countD >= 25)
+    return {
+      ok: false,
+      error: "Aaj ka limit ho gaya. Kal naya order bhejna 🙏",
+    };
 
   entry.count30s++;
   entry.countH++;
@@ -45,8 +79,7 @@ const orderSchema = z.object({
 export type OrderInput = z.infer<typeof orderSchema>;
 
 export type SubmitResult =
-  | { success: true; whatsappUrl: string }
-  | { success: false; error: string };
+  { success: true; whatsappUrl: string } | { success: false; error: string };
 
 export async function submitOrder(data: OrderInput): Promise<SubmitResult> {
   // Validate
@@ -58,9 +91,10 @@ export async function submitOrder(data: OrderInput): Promise<SubmitResult> {
 
   // Rate limit
   const h = await headers();
-  const ip = h.get("x-forwarded-for")?.split(",")[0]?.trim()
-    ?? h.get("x-real-ip")
-    ?? "unknown";
+  const ip =
+    h.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    h.get("x-real-ip") ??
+    "unknown";
 
   const limit = rateLimit(ip);
   if (!limit.ok) return { success: false, error: limit.error };

@@ -11,9 +11,11 @@ interface SplashScreenProps {
 const PARTICLES = Array.from({ length: 20 }, (_, i) => {
   const angle = (i / 20) * 2 * Math.PI;
   const distance = i % 2 === 0 ? 88 : 112;
-  const sizes =  [6, 4, 3, 5, 4, 3, 6, 4, 3, 5, 4, 3, 6, 4, 3, 5, 4, 3, 6, 4];
-  const delays = [0, 0.04, 0.08, 0.02, 0.06, 0.10, 0.03, 0.07, 0.01, 0.05,
-                  0, 0.04, 0.08, 0.02, 0.06, 0.10, 0.03, 0.07, 0.01, 0.05];
+  const sizes = [6, 4, 3, 5, 4, 3, 6, 4, 3, 5, 4, 3, 6, 4, 3, 5, 4, 3, 6, 4];
+  const delays = [
+    0, 0.04, 0.08, 0.02, 0.06, 0.1, 0.03, 0.07, 0.01, 0.05, 0, 0.04, 0.08, 0.02,
+    0.06, 0.1, 0.03, 0.07, 0.01, 0.05,
+  ];
   return {
     id: i,
     x: Math.cos(angle) * distance,
@@ -34,7 +36,8 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
     const timer = setTimeout(async () => {
       setRingComplete(true);
       ringControls.start({
-        scale: 0, opacity: 0,
+        scale: 0,
+        opacity: 0,
         transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
       });
       await logoControls.start({
@@ -69,13 +72,13 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
 
           {/* Decorative floating dots — scattered around */}
           {[
-            { cx: "8%",  cy: "12%", r: 5 },
-            { cx: "92%", cy: "8%",  r: 4 },
-            { cx: "5%",  cy: "55%", r: 3 },
+            { cx: "8%", cy: "12%", r: 5 },
+            { cx: "92%", cy: "8%", r: 4 },
+            { cx: "5%", cy: "55%", r: 3 },
             { cx: "95%", cy: "45%", r: 6 },
             { cx: "15%", cy: "88%", r: 4 },
             { cx: "85%", cy: "85%", r: 5 },
-            { cx: "50%", cy: "5%",  r: 3 },
+            { cx: "50%", cy: "5%", r: 3 },
             { cx: "50%", cy: "95%", r: 4 },
             { cx: "22%", cy: "35%", r: 3 },
             { cx: "78%", cy: "65%", r: 3 },
@@ -83,7 +86,12 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
             <motion.div
               key={i}
               className="pointer-events-none absolute rounded-full bg-[rgba(159,102,54,0.18)]"
-              style={{ left: dot.cx, top: dot.cy, width: dot.r * 2, height: dot.r * 2 }}
+              style={{
+                left: dot.cx,
+                top: dot.cy,
+                width: dot.r * 2,
+                height: dot.r * 2,
+              }}
               animate={{
                 opacity: [0.3, 0.7, 0.3],
                 scale: [1, 1.3, 1],
@@ -98,28 +106,70 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
           ))}
 
           {/* Decorative corner arcs */}
-          <svg className="pointer-events-none absolute left-0 top-0 h-64 w-64 opacity-[0.06]" viewBox="0 0 256 256" fill="none" aria-hidden="true">
-            <circle cx="0" cy="0" r="180" stroke="rgba(159,102,54,1)" strokeWidth="1.5" />
-            <circle cx="0" cy="0" r="220" stroke="rgba(159,102,54,1)" strokeWidth="1" />
+          <svg
+            className="pointer-events-none absolute left-0 top-0 h-64 w-64 opacity-[0.06]"
+            viewBox="0 0 256 256"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle
+              cx="0"
+              cy="0"
+              r="180"
+              stroke="rgba(159,102,54,1)"
+              strokeWidth="1.5"
+            />
+            <circle
+              cx="0"
+              cy="0"
+              r="220"
+              stroke="rgba(159,102,54,1)"
+              strokeWidth="1"
+            />
           </svg>
-          <svg className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 opacity-[0.06]" viewBox="0 0 256 256" fill="none" aria-hidden="true">
-            <circle cx="256" cy="256" r="180" stroke="rgba(159,102,54,1)" strokeWidth="1.5" />
-            <circle cx="256" cy="256" r="220" stroke="rgba(159,102,54,1)" strokeWidth="1" />
+          <svg
+            className="pointer-events-none absolute bottom-0 right-0 h-64 w-64 opacity-[0.06]"
+            viewBox="0 0 256 256"
+            fill="none"
+            aria-hidden="true"
+          >
+            <circle
+              cx="256"
+              cy="256"
+              r="180"
+              stroke="rgba(159,102,54,1)"
+              strokeWidth="1.5"
+            />
+            <circle
+              cx="256"
+              cy="256"
+              r="220"
+              stroke="rgba(159,102,54,1)"
+              strokeWidth="1"
+            />
           </svg>
 
           {/* ── Central content ── */}
           <div className="relative flex items-center justify-center">
-
             {/* Particle burst */}
             {PARTICLES.map((p) => (
               <motion.div
                 key={p.id}
                 className="absolute rounded-full"
-                style={{ width: p.size, height: p.size, background: "rgba(159,102,54,0.78)" }}
+                style={{
+                  width: p.size,
+                  height: p.size,
+                  background: "rgba(159,102,54,0.78)",
+                }}
                 initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
                 animate={
                   ringComplete
-                    ? { x: p.x, y: p.y, opacity: [0, 1, 1, 0], scale: [0, 1.3, 1, 0] }
+                    ? {
+                        x: p.x,
+                        y: p.y,
+                        opacity: [0, 1, 1, 0],
+                        scale: [0, 1.3, 1, 0],
+                      }
                     : { x: 0, y: 0, opacity: 0, scale: 0 }
                 }
                 transition={{ duration: 0.7, delay: p.delay, ease: "easeOut" }}
@@ -129,16 +179,29 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
             {/* SVG Ring */}
             <motion.svg
               className="absolute"
-              width="136" height="136" viewBox="0 0 136 136"
-              fill="none" aria-hidden="true"
+              width="136"
+              height="136"
+              viewBox="0 0 136 136"
+              fill="none"
+              aria-hidden="true"
               animate={ringControls}
               initial={{ scale: 1, opacity: 1 }}
             >
-              <circle cx="68" cy="68" r="62" stroke="rgba(159,102,54,0.12)" strokeWidth="3" />
+              <circle
+                cx="68"
+                cy="68"
+                r="62"
+                stroke="rgba(159,102,54,0.12)"
+                strokeWidth="3"
+              />
               <motion.circle
-                cx="68" cy="68" r="62"
-                stroke="rgba(159,102,54,0.8)" strokeWidth="3"
-                strokeLinecap="round" fill="none"
+                cx="68"
+                cy="68"
+                r="62"
+                stroke="rgba(159,102,54,0.8)"
+                strokeWidth="3"
+                strokeLinecap="round"
+                fill="none"
                 strokeDasharray={circumference}
                 initial={{ strokeDashoffset: circumference }}
                 animate={{ strokeDashoffset: 0 }}
@@ -150,7 +213,11 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
             {/* Ambient glow behind logo */}
             <motion.div
               className="absolute h-36 w-36 rounded-full bg-[rgba(159,102,54,0.12)] blur-2xl"
-              animate={ringComplete ? { scale: 2, opacity: 0 } : { scale: 1, opacity: 1 }}
+              animate={
+                ringComplete
+                  ? { scale: 2, opacity: 0 }
+                  : { scale: 1, opacity: 1 }
+              }
               transition={{ duration: 0.5 }}
             />
 
@@ -167,7 +234,8 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
                 <Image
                   src="/images/logo.jpg"
                   alt="Bee Bakes by Vartika"
-                  fill sizes="96px"
+                  fill
+                  sizes="96px"
                   className="object-cover"
                   priority
                 />
@@ -188,7 +256,9 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
             >
               Bee Bakes
             </p>
-            <p className="text-sm italic text-[var(--color-gold)]">by Vartika</p>
+            <p className="text-sm italic text-[var(--color-gold)]">
+              by Vartika
+            </p>
           </motion.div>
 
           {/* Tagline */}
@@ -216,8 +286,8 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
             </p>
             <p className="mt-3 text-base leading-relaxed text-[var(--color-text-muted)]">
               All cake designs shown on this website are AI-generated concept
-              illustrations. Every cake you order is hand-crafted fresh,
-              exactly to your design.
+              illustrations. Every cake you order is hand-crafted fresh, exactly
+              to your design.
             </p>
           </motion.div>
 
@@ -234,7 +304,12 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
                 key={i}
                 className="h-1.5 w-1.5 rounded-full bg-[var(--color-gold)]"
                 animate={{ scale: [1, 1.55, 1], opacity: [0.35, 1, 0.35] }}
-                transition={{ duration: 1.1, repeat: Infinity, delay: i * 0.2, ease: "easeInOut" }}
+                transition={{
+                  duration: 1.1,
+                  repeat: Infinity,
+                  delay: i * 0.2,
+                  ease: "easeInOut",
+                }}
               />
             ))}
           </motion.div>

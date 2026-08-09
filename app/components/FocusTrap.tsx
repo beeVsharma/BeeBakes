@@ -18,7 +18,11 @@ const FOCUSABLE_SELECTORS = [
   '[tabindex]:not([tabindex="-1"])',
 ].join(", ");
 
-export default function FocusTrap({ children, active, returnFocusRef }: FocusTrapProps) {
+export default function FocusTrap({
+  children,
+  active,
+  returnFocusRef,
+}: FocusTrapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Lock body scroll and trap focus when active
@@ -35,7 +39,8 @@ export default function FocusTrap({ children, active, returnFocusRef }: FocusTra
     // Move focus into modal on open
     const container = containerRef.current;
     if (container) {
-      const firstFocusable = container.querySelector<HTMLElement>(FOCUSABLE_SELECTORS);
+      const firstFocusable =
+        container.querySelector<HTMLElement>(FOCUSABLE_SELECTORS);
       firstFocusable?.focus();
     }
 
@@ -43,7 +48,7 @@ export default function FocusTrap({ children, active, returnFocusRef }: FocusTra
       if (event.key !== "Tab" || !container) return;
 
       const focusables = Array.from(
-        container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS)
+        container.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTORS),
       ).filter((el) => !el.closest("[hidden]"));
 
       if (focusables.length === 0) return;

@@ -47,7 +47,7 @@ Inside your terminal (project root), run:
 claude mcp add graphify -- "python" "-m" "graphify.serve"
 ```
 
-> **What this does:** Registers Graphify as an MCP server for *this* project only. It will **not** affect other projects.
+> **What this does:** Registers Graphify as an MCP server for _this_ project only. It will **not** affect other projects.
 
 **Step 2 — Build the knowledge graph**
 
@@ -67,26 +67,26 @@ Look for `graphify-out/` folder. If it has `graph.json`, you are ready.
 
 Once set up, ask Claude things like:
 
-| Your Question (English or Hindi) | What You Get |
-|---------------------------------|--------------|
-| "How is this project structured?" | High-level architecture, file tree, entry points |
-| "Navbar component kya kya import karta hai?" | Exact imports and dependencies of Navbar |
-| "Find all React hooks in this project." | Nodes tagged as hooks with file locations |
-| "What calls the `Hero` component?" | Call-chain / parent edges pointing to Hero |
-| "Show me the shortest path between `page.tsx` and `CustomCakes`" | Dependency chain linking those files |
-| "Quick graph summary" | Nodes count, edges count, file types breakdown |
+| Your Question (English or Hindi)                                 | What You Get                                     |
+| ---------------------------------------------------------------- | ------------------------------------------------ |
+| "How is this project structured?"                                | High-level architecture, file tree, entry points |
+| "Navbar component kya kya import karta hai?"                     | Exact imports and dependencies of Navbar         |
+| "Find all React hooks in this project."                          | Nodes tagged as hooks with file locations        |
+| "What calls the `Hero` component?"                               | Call-chain / parent edges pointing to Hero       |
+| "Show me the shortest path between `page.tsx` and `CustomCakes`" | Dependency chain linking those files             |
+| "Quick graph summary"                                            | Nodes count, edges count, file types breakdown   |
 
 ### Available MCP Tools (behind the scenes)
 
 When you ask, Claude Code calls these **Graphify MCP tools** automatically:
 
-| Tool | Purpose |
-|------|---------|
-| `query_graph` | Search the graph by node type, label, or edge |
-| `shortest_path` | Find shortest dependency path between two nodes |
+| Tool               | Purpose                                                |
+| ------------------ | ------------------------------------------------------ |
+| `query_graph`      | Search the graph by node type, label, or edge          |
+| `shortest_path`    | Find shortest dependency path between two nodes        |
 | `get_neighborhood` | See what surrounds a file (imports, callers, children) |
-| `search_nodes` | Semantic text search across all nodes |
-| `get_code` | Retrieve the code snippet for a specific node |
+| `search_nodes`     | Semantic text search across all nodes                  |
+| `get_code`         | Retrieve the code snippet for a specific node          |
 
 ---
 
@@ -113,12 +113,12 @@ This project (`C:\Users\PREET\Desktop\starter-template`) was already set up with
 
 ## Troubleshooting
 
-| Problem | Fix |
-|---------|-----|
-| `graphify: command not found` | Run `pip install graphify` in your terminal |
-| `'python' is not recognized` | Ensure Python is in your system `PATH` |
-| MCP fails to connect | Restart Claude Code; verify `claude mcp list` shows `graphify` |
-| Graph is outdated | Run `graphify extract . --fresh` to rebuild |
+| Problem                       | Fix                                                            |
+| ----------------------------- | -------------------------------------------------------------- |
+| `graphify: command not found` | Run `pip install graphify` in your terminal                    |
+| `'python' is not recognized`  | Ensure Python is in your system `PATH`                         |
+| MCP fails to connect          | Restart Claude Code; verify `claude mcp list` shows `graphify` |
+| Graph is outdated             | Run `graphify extract . --fresh` to rebuild                    |
 
 ---
 

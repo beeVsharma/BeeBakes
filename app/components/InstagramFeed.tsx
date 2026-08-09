@@ -6,9 +6,18 @@ import Image from "next/image";
 import { INSTAGRAM_URL } from "@/lib/constants";
 
 const images = [
-  { src: "/images/gallery_2_1781078565474.webp", alt: "Vanilla layered cake with fresh berries on top" },
-  { src: "/images/gallery_5_1781078610969.webp", alt: "Artisan cookie box gift set, neatly packaged" },
-  { src: "/images/gallery_6_1781078622372.webp", alt: "Caramel and butterscotch cake with clean finish" },
+  {
+    src: "/images/gallery_2_1781078565474.webp",
+    alt: "Vanilla layered cake with fresh berries on top",
+  },
+  {
+    src: "/images/gallery_5_1781078610969.webp",
+    alt: "Artisan cookie box gift set, neatly packaged",
+  },
+  {
+    src: "/images/gallery_6_1781078622372.webp",
+    alt: "Caramel and butterscotch cake with clean finish",
+  },
 ];
 
 export default function InstagramFeed() {
@@ -25,8 +34,9 @@ export default function InstagramFeed() {
             </h2>
           </div>
           <p className="pretty max-w-2xl text-base leading-relaxed text-[var(--color-text-muted)]">
-            Each piece here is a real Bee Bakes creation — cakes, cookies, and dessert boxes that left
-            our kitchen and made it to someone&rsquo;s table or celebration.
+            Each piece here is a real Bee Bakes creation — cakes, cookies, and
+            dessert boxes that left our kitchen and made it to someone&rsquo;s
+            table or celebration.
           </p>
         </div>
 
@@ -56,7 +66,9 @@ export default function InstagramFeed() {
                 {/* CSS group-hover overlay — no React state needed */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center bg-[rgba(47,34,27,0.55)] px-4 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
                   <ExternalLink className="h-6 w-6" aria-hidden="true" />
-                  <p className="mt-2 text-xs tracking-[0.14em] uppercase text-white/80">View on Instagram</p>
+                  <p className="mt-2 text-xs tracking-[0.14em] uppercase text-white/80">
+                    View on Instagram
+                  </p>
                 </div>
               </motion.a>
             );

@@ -2,7 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   productionBrowserSourceMaps: false,
-  allowedDevOrigins: ["172.26.96.1", "169.254.181.24", "localhost", "127.0.0.1", "192.168.29.142"],
+  allowedDevOrigins: [
+    "172.26.96.1",
+    "169.254.181.24",
+    "localhost",
+    "127.0.0.1",
+    "192.168.29.142",
+  ],
   turbopack: {
     root: import.meta.dirname || "",
   },
@@ -44,7 +50,8 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Permissions-Policy",
-            value: "camera=(), microphone=(), geolocation=(), interest-cohort=()",
+            value:
+              "camera=(), microphone=(), geolocation=(), interest-cohort=()",
           },
         ],
       },

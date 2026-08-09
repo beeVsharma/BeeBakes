@@ -7,17 +7,20 @@ const features = [
   {
     icon: BadgeCheck,
     title: "Careful ingredient selection",
-    subtitle: "Fresh dairy, balanced sweetness, and a finish that travels well.",
+    subtitle:
+      "Fresh dairy, balanced sweetness, and a finish that travels well.",
   },
   {
     icon: Clock3,
     title: "Fast, practical turnaround",
-    subtitle: "Most standard orders can be confirmed without a long back and forth.",
+    subtitle:
+      "Most standard orders can be confirmed without a long back and forth.",
   },
   {
     icon: Sparkles,
     title: "Custom finishes",
-    subtitle: "Clean decoration, tiered cakes, and gift-ready packaging when needed.",
+    subtitle:
+      "Clean decoration, tiered cakes, and gift-ready packaging when needed.",
   },
   {
     icon: Truck,
@@ -38,8 +41,9 @@ export default function FeaturesBar() {
             A quieter bakery workflow, presented with more care
           </h2>
           <p className="pretty mt-4 max-w-md text-sm leading-relaxed text-[var(--color-text-muted)]">
-            We keep the page and the process lightweight. The aim is less visual noise, clearer ordering,
-            and a better sense of what you are actually buying.
+            We keep the page and the process lightweight. The aim is less visual
+            noise, clearer ordering, and a better sense of what you are actually
+            buying.
           </p>
         </div>
 
@@ -59,7 +63,9 @@ export default function FeaturesBar() {
                 <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--color-gold)]/10 text-[var(--color-gold)]">
                   <Icon className="h-5 w-5" aria-hidden="true" />
                 </div>
-                <h3 className="text-base font-semibold text-[var(--color-text-dark)]">{feature.title}</h3>
+                <h3 className="text-base font-semibold text-[var(--color-text-dark)]">
+                  {feature.title}
+                </h3>
                 <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
                   {feature.subtitle}
                 </p>

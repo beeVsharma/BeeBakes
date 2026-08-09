@@ -36,8 +36,9 @@ export default function Hero() {
             transition={{ delay: 0.25, duration: 0.75 }}
             className="pretty mt-4 max-w-lg text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base md:text-lg"
           >
-            Eggless cakes, artisan cookies, and dessert boxes baked fresh in Bikaner. The result stays
-            polished, practical, and easy to coordinate from first message to final handoff.
+            Eggless cakes, artisan cookies, and dessert boxes baked fresh in
+            Bikaner. The result stays polished, practical, and easy to
+            coordinate from first message to final handoff.
           </motion.p>
 
           <motion.div
@@ -62,16 +63,28 @@ export default function Hero() {
 
           <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3 md:mt-10">
             <div className="surface rounded-2xl px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">Turnaround</p>
-              <p className="mt-1 text-lg font-semibold text-[var(--color-text-dark)]">24 to 48 hours</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                Turnaround
+              </p>
+              <p className="mt-1 text-lg font-semibold text-[var(--color-text-dark)]">
+                24 to 48 hours
+              </p>
             </div>
             <div className="surface rounded-2xl px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">Style</p>
-              <p className="mt-1 text-lg font-semibold text-[var(--color-text-dark)]">Clean, elegant, eggless</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                Style
+              </p>
+              <p className="mt-1 text-lg font-semibold text-[var(--color-text-dark)]">
+                Clean, elegant, eggless
+              </p>
             </div>
             <div className="surface rounded-2xl px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">Ordering</p>
-              <p className="mt-1 text-lg font-semibold text-[var(--color-text-dark)]">WhatsApp coordination</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+                Ordering
+              </p>
+              <p className="mt-1 text-lg font-semibold text-[var(--color-text-dark)]">
+                WhatsApp coordination
+              </p>
             </div>
           </div>
         </div>
@@ -83,7 +96,7 @@ export default function Hero() {
           className="relative lg:justify-self-end w-full"
         >
           <div className="absolute -left-6 top-10 h-36 w-36 rounded-full bg-[var(--color-gold)]/12 blur-3xl md:h-40 md:w-40" />
-          
+
           <div className="grid grid-cols-2 gap-4 h-[25rem] sm:h-[30rem] lg:h-[34rem] w-full">
             {/* Left Tall Card - Main Cake */}
             <div className="relative overflow-hidden rounded-[2rem] border border-white/80 bg-white p-2.5 shadow-[0_20px_50px_rgba(73,45,20,0.12)]">
@@ -132,9 +145,12 @@ export default function Hero() {
           </div>
 
           <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 surface max-w-[90%] rounded-[1.5rem] px-5 py-3.5 shadow-[0_20px_50px_rgba(73,45,20,0.16)] sm:left-6 sm:translate-x-0 sm:max-w-xs">
-            <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-[var(--color-gold)]">Handcrafted in Bikaner</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-[var(--color-gold)]">
+              Handcrafted in Bikaner
+            </p>
             <p className="mt-1 text-xs text-[var(--color-text-muted)] leading-relaxed">
-              Eggless custom cakes, fresh artisan cookies, and celebration dessert boxes.
+              Eggless custom cakes, fresh artisan cookies, and celebration
+              dessert boxes.
             </p>
           </div>
         </motion.div>

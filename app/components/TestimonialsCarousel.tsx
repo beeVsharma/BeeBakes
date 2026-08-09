@@ -45,10 +45,7 @@ type TestimonialData = (typeof testimonials)[number];
 
 function StarRating({ rating }: { rating: number }) {
   return (
-    <div
-      aria-label={`${rating} out of 5 stars`}
-      className="flex gap-1"
-    >
+    <div aria-label={`${rating} out of 5 stars`} className="flex gap-1">
       {Array.from({ length: rating }).map((_, index) => (
         <Star
           key={index}
@@ -82,8 +79,12 @@ function TestimonialItem({
         &ldquo;{testimonial.quote}&rdquo;
       </p>
       <div className="mt-5">
-        <p className="font-semibold text-[var(--color-text-dark)]">{testimonial.name}</p>
-        <p className="text-xs text-[var(--color-text-muted)]">{testimonial.role}</p>
+        <p className="font-semibold text-[var(--color-text-dark)]">
+          {testimonial.name}
+        </p>
+        <p className="text-xs text-[var(--color-text-muted)]">
+          {testimonial.role}
+        </p>
       </div>
     </motion.article>
   );
@@ -100,14 +101,20 @@ export default function TestimonialsCarousel() {
         transition={{ duration: 0.55 }}
         className="surface rounded-[2rem] p-6 sm:p-7 lg:col-span-7"
       >
-        <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-gold)]">Featured note</p>
+        <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-gold)]">
+          Featured note
+        </p>
         <StarRating rating={testimonials[0].rating} />
         <p className="pretty mt-5 text-[1.7rem] leading-[1.3] text-[var(--color-text-dark)] md:text-[1.9rem]">
           &ldquo;{testimonials[0].quote}&rdquo;
         </p>
         <div className="mt-7">
-          <p className="font-semibold text-[var(--color-text-dark)]">{testimonials[0].name}</p>
-          <p className="text-sm text-[var(--color-text-muted)]">{testimonials[0].role}</p>
+          <p className="font-semibold text-[var(--color-text-dark)]">
+            {testimonials[0].name}
+          </p>
+          <p className="text-sm text-[var(--color-text-muted)]">
+            {testimonials[0].role}
+          </p>
         </div>
       </motion.article>
 

@@ -4,9 +4,16 @@ import { motion } from "framer-motion";
 import { Check } from "lucide-react";
 import Image from "next/image";
 
-export default function CustomCakes({ onOpenCustomOrder }: { onOpenCustomOrder: () => void }) {
+export default function CustomCakes({
+  onOpenCustomOrder,
+}: {
+  onOpenCustomOrder: () => void;
+}) {
   return (
-    <section id="custom-cakes" className="scroll-mt-0 px-4 py-20 md:scroll-mt-0 md:py-24">
+    <section
+      id="custom-cakes"
+      className="scroll-mt-0 px-4 py-20 md:scroll-mt-0 md:py-24"
+    >
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16">
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -48,39 +55,66 @@ export default function CustomCakes({ onOpenCustomOrder }: { onOpenCustomOrder: 
             Custom cakes for birthdays, anniversaries, and the events in between
           </h2>
           <p className="pretty mt-6 max-w-xl text-base leading-relaxed text-[var(--color-text-muted)]">
-            Share the theme, flavor, and size. We turn that into a cake that fits the table instead of
-            trying to overpower it. The result should look deliberate, travel well, and taste fresh.
+            Share the theme, flavor, and size. We turn that into a cake that
+            fits the table instead of trying to overpower it. The result should
+            look deliberate, travel well, and taste fresh.
           </p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             <div className="surface rounded-2xl px-4 py-4">
-              <p className="text-sm font-semibold text-[var(--color-text-dark)]">Personalized design</p>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Share references, colors, and a rough mood.</p>
+              <p className="text-sm font-semibold text-[var(--color-text-dark)]">
+                Personalized design
+              </p>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+                Share references, colors, and a rough mood.
+              </p>
             </div>
             <div className="surface rounded-2xl px-4 py-4">
-              <p className="text-sm font-semibold text-[var(--color-text-dark)]">Fresh ingredients</p>
-              <p className="mt-1 text-sm text-[var(--color-text-muted)]">Everything is baked close to the delivery window.</p>
+              <p className="text-sm font-semibold text-[var(--color-text-dark)]">
+                Fresh ingredients
+              </p>
+              <p className="mt-1 text-sm text-[var(--color-text-muted)]">
+                Everything is baked close to the delivery window.
+              </p>
             </div>
           </div>
 
           <ul className="mt-8 space-y-3 text-[var(--color-text-dark)]">
             <li className="flex items-start gap-3">
-              <span aria-hidden="true" className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/12 text-[var(--color-gold)]">
+              <span
+                aria-hidden="true"
+                className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/12 text-[var(--color-gold)]"
+              >
                 <Check className="h-4 w-4" />
               </span>
-              <span>Best for celebration cakes, gift orders, and smaller tiered builds.</span>
+              <span>
+                Best for celebration cakes, gift orders, and smaller tiered
+                builds.
+              </span>
             </li>
             <li className="flex items-start gap-3">
-              <span aria-hidden="true" className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/12 text-[var(--color-gold)]">
+              <span
+                aria-hidden="true"
+                className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/12 text-[var(--color-gold)]"
+              >
                 <Check className="h-4 w-4" />
               </span>
-              <span>Choose from chocolate, fruit, vanilla, and richer dessert-style finishes.</span>
+              <span>
+                Choose from chocolate, fruit, vanilla, and richer dessert-style
+                finishes.
+              </span>
             </li>
             <li className="flex items-start gap-3">
-              <span aria-hidden="true" className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/12 text-[var(--color-gold)]">
+              <span
+                aria-hidden="true"
+                className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/12 text-[var(--color-gold)]"
+              >
                 <Check className="h-4 w-4" />
               </span>
-              <span>WhatsApp confirmation keeps the ordering flow fast and easy to track.</span>
+              <span>
+                WhatsApp confirmation keeps the ordering flow fast and easy to
+                track.
+              </span>
             </li>
           </ul>
 

@@ -10,7 +10,12 @@ type Props = {
   id?: string;
 };
 
-export default function AnimatedSection({ children, className = "", delay = 0, id }: Props) {
+export default function AnimatedSection({
+  children,
+  className = "",
+  delay = 0,
+  id,
+}: Props) {
   return (
     <motion.section
       id={id}
@@ -24,4 +29,3 @@ export default function AnimatedSection({ children, className = "", delay = 0, i
     </motion.section>
   );
 }
-

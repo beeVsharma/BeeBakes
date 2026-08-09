@@ -30,11 +30,15 @@ const initialFormData: CustomOrderFormData = {
   details: "",
 };
 
-export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalProps) {
+export default function CustomOrderModal({
+  isOpen,
+  onClose,
+}: CustomOrderModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState("");
   const [errors, setErrors] = useState<FormErrors>({});
-  const [formData, setFormData] = useState<CustomOrderFormData>(initialFormData);
+  const [formData, setFormData] =
+    useState<CustomOrderFormData>(initialFormData);
   const [isPending, startTransition] = useTransition();
 
   const triggerRef = useRef<HTMLElement | null>(null);
@@ -47,16 +51,23 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
 
   const validate = () => {
     const nextErrors: FormErrors = {};
-    if (formData.name.trim().length < 2) nextErrors.name = "Please enter your full name.";
+    if (formData.name.trim().length < 2)
+      nextErrors.name = "Please enter your full name.";
     if (!formData.occasion) nextErrors.occasion = "Choose the occasion.";
     if (!formData.weight) nextErrors.weight = "Pick a size.";
-    if (formData.flavor.trim().length < 3) nextErrors.flavor = "Add at least one flavor idea.";
-    if (formData.details.trim().length < 10) nextErrors.details = "Add a few more details.";
+    if (formData.flavor.trim().length < 3)
+      nextErrors.flavor = "Add at least one flavor idea.";
+    if (formData.details.trim().length < 10)
+      nextErrors.details = "Add a few more details.";
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    event: ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { name, value } = event.target;
     setFormData((current) => ({ ...current, [name]: value }));
     setErrors((current) => ({ ...current, [name]: undefined }));
@@ -76,7 +87,11 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
       }
 
       // Server validated & rate-limited — safe to open WhatsApp
-      const popup = window.open(result.whatsappUrl, "_blank", "noopener,noreferrer");
+      const popup = window.open(
+        result.whatsappUrl,
+        "_blank",
+        "noopener,noreferrer",
+      );
       if (!popup) {
         setSubmitError("WhatsApp popup blocked. Allow popups and try again.");
         return;
@@ -143,23 +158,49 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
                   className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[var(--color-text-dark)] shadow-[0_12px_28px_rgba(73,45,20,0.12)] transition-transform duration-300 hover:scale-105 hover:bg-white md:right-4 md:top-4 md:h-10 md:w-10"
                   aria-label="Close custom order form"
                 >
-                  <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  <svg
+                    className="h-5 w-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
                   </svg>
                 </button>
 
                 {isSubmitted ? (
                   <div className="p-8 text-center sm:p-10 md:p-12">
                     <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[var(--color-gold)]/12 text-[var(--color-gold)]">
-                      <svg className="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                      <svg
+                        className="h-10 w-10"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M5 13l4 4L19 7"
+                        />
                       </svg>
                     </div>
-                    <h3 id="custom-order-title" className="mt-6 text-2xl font-semibold text-[var(--color-text-dark)] sm:text-3xl">
+                    <h3
+                      id="custom-order-title"
+                      className="mt-6 text-2xl font-semibold text-[var(--color-text-dark)] sm:text-3xl"
+                    >
                       Request sent
                     </h3>
                     <p className="pretty mx-auto mt-4 max-w-md text-sm leading-relaxed text-[var(--color-text-muted)]">
-                      Your details were opened in WhatsApp. Send the message and we will continue from there.
+                      Your details were opened in WhatsApp. Send the message and
+                      we will continue from there.
                     </p>
                     <button
                       type="button"
@@ -175,24 +216,37 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
                       <p className="mb-3 text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-gold)]">
                         Custom order
                       </p>
-                      <h3 id="custom-order-title" className="balance text-2xl font-semibold text-[var(--color-text-dark)] sm:text-3xl">
+                      <h3
+                        id="custom-order-title"
+                        className="balance text-2xl font-semibold text-[var(--color-text-dark)] sm:text-3xl"
+                      >
                         Design your dream cake
                       </h3>
                       <p className="pretty mx-auto mt-3 max-w-lg text-sm leading-relaxed text-[var(--color-text-muted)]">
-                        Tell us the size, flavor, and finish you want. The form is short on purpose so the
-                        handoff stays easy.
+                        Tell us the size, flavor, and finish you want. The form
+                        is short on purpose so the handoff stays easy.
                       </p>
                     </div>
 
                     {submitError && (
-                      <div role="alert" className="mt-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                      <div
+                        role="alert"
+                        className="mt-6 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                      >
                         {submitError}
                       </div>
                     )}
 
-                    <form onSubmit={handleSubmit} className="mt-8 space-y-5" noValidate>
+                    <form
+                      onSubmit={handleSubmit}
+                      className="mt-8 space-y-5"
+                      noValidate
+                    >
                       <div>
-                        <label className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]" htmlFor="order-name">
+                        <label
+                          className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]"
+                          htmlFor="order-name"
+                        >
                           Your name
                         </label>
                         <input
@@ -206,16 +260,27 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
                           className="w-full rounded-2xl border border-[var(--color-card-border)] bg-white px-4 py-3 text-[var(--color-text-dark)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-gold)] disabled:opacity-60"
                           placeholder="Riya Puri"
                           aria-invalid={Boolean(errors.name)}
-                          aria-describedby={errors.name ? "name-error" : undefined}
+                          aria-describedby={
+                            errors.name ? "name-error" : undefined
+                          }
                         />
                         {errors.name && (
-                          <p id="name-error" role="alert" className="mt-1 text-xs text-red-600">{errors.name}</p>
+                          <p
+                            id="name-error"
+                            role="alert"
+                            className="mt-1 text-xs text-red-600"
+                          >
+                            {errors.name}
+                          </p>
                         )}
                       </div>
 
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div>
-                          <label className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]" htmlFor="order-occasion">
+                          <label
+                            className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]"
+                            htmlFor="order-occasion"
+                          >
                             Occasion
                           </label>
                           <select
@@ -227,7 +292,9 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
                             disabled={isSubmitting}
                             className="w-full rounded-2xl border border-[var(--color-card-border)] bg-white px-4 py-3 text-[var(--color-text-dark)] focus:border-[var(--color-gold)] disabled:opacity-60"
                             aria-invalid={Boolean(errors.occasion)}
-                            aria-describedby={errors.occasion ? "occasion-error" : undefined}
+                            aria-describedby={
+                              errors.occasion ? "occasion-error" : undefined
+                            }
                           >
                             <option value="">Select one</option>
                             <option value="Birthday">Birthday</option>
@@ -237,11 +304,20 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
                             <option value="Other">Other</option>
                           </select>
                           {errors.occasion && (
-                            <p id="occasion-error" role="alert" className="mt-1 text-xs text-red-600">{errors.occasion}</p>
+                            <p
+                              id="occasion-error"
+                              role="alert"
+                              className="mt-1 text-xs text-red-600"
+                            >
+                              {errors.occasion}
+                            </p>
                           )}
                         </div>
                         <div>
-                          <label className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]" htmlFor="order-size">
+                          <label
+                            className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]"
+                            htmlFor="order-size"
+                          >
                             Weight or size
                           </label>
                           <select
@@ -253,7 +329,9 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
                             disabled={isSubmitting}
                             className="w-full rounded-2xl border border-[var(--color-card-border)] bg-white px-4 py-3 text-[var(--color-text-dark)] focus:border-[var(--color-gold)] disabled:opacity-60"
                             aria-invalid={Boolean(errors.weight)}
-                            aria-describedby={errors.weight ? "weight-error" : undefined}
+                            aria-describedby={
+                              errors.weight ? "weight-error" : undefined
+                            }
                           >
                             <option value="">Select one</option>
                             <option value="0.5 kg">0.5 kg</option>
@@ -262,13 +340,22 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
                             <option value="Custom tiered">Custom tiered</option>
                           </select>
                           {errors.weight && (
-                            <p id="weight-error" role="alert" className="mt-1 text-xs text-red-600">{errors.weight}</p>
+                            <p
+                              id="weight-error"
+                              role="alert"
+                              className="mt-1 text-xs text-red-600"
+                            >
+                              {errors.weight}
+                            </p>
                           )}
                         </div>
                       </div>
 
                       <div>
-                        <label className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]" htmlFor="order-flavor">
+                        <label
+                          className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]"
+                          htmlFor="order-flavor"
+                        >
                           Flavor preference
                         </label>
                         <input
@@ -282,15 +369,26 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
                           className="w-full rounded-2xl border border-[var(--color-card-border)] bg-white px-4 py-3 text-[var(--color-text-dark)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-gold)] disabled:opacity-60"
                           placeholder="Chocolate truffle, red velvet, mango"
                           aria-invalid={Boolean(errors.flavor)}
-                          aria-describedby={errors.flavor ? "flavor-error" : undefined}
+                          aria-describedby={
+                            errors.flavor ? "flavor-error" : undefined
+                          }
                         />
                         {errors.flavor && (
-                          <p id="flavor-error" role="alert" className="mt-1 text-xs text-red-600">{errors.flavor}</p>
+                          <p
+                            id="flavor-error"
+                            role="alert"
+                            className="mt-1 text-xs text-red-600"
+                          >
+                            {errors.flavor}
+                          </p>
                         )}
                       </div>
 
                       <div>
-                        <label className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]" htmlFor="order-details">
+                        <label
+                          className="mb-1 block text-sm font-medium text-[var(--color-text-dark)]"
+                          htmlFor="order-details"
+                        >
                           Theme or design details
                         </label>
                         <textarea
@@ -304,10 +402,18 @@ export default function CustomOrderModal({ isOpen, onClose }: CustomOrderModalPr
                           className="w-full resize-none rounded-2xl border border-[var(--color-card-border)] bg-white px-4 py-3 text-[var(--color-text-dark)] placeholder:text-[var(--color-text-muted)] focus:border-[var(--color-gold)] disabled:opacity-60"
                           placeholder="Add colors, theme ideas, or size notes."
                           aria-invalid={Boolean(errors.details)}
-                          aria-describedby={errors.details ? "details-error" : undefined}
+                          aria-describedby={
+                            errors.details ? "details-error" : undefined
+                          }
                         />
                         {errors.details && (
-                          <p id="details-error" role="alert" className="mt-1 text-xs text-red-600">{errors.details}</p>
+                          <p
+                            id="details-error"
+                            role="alert"
+                            className="mt-1 text-xs text-red-600"
+                          >
+                            {errors.details}
+                          </p>
                         )}
                       </div>
 

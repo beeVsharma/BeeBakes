@@ -15,7 +15,14 @@ type Props = {
   onClick?: () => void;
 };
 
-const ProductCard = memo(function ProductCard({ title, description, image, price, delay = 0, onClick }: Props) {
+const ProductCard = memo(function ProductCard({
+  title,
+  description,
+  image,
+  price,
+  delay = 0,
+  onClick,
+}: Props) {
   const [imgError, setImgError] = useState(false);
   const [loaded, setLoaded] = useState(false);
 
@@ -43,15 +50,23 @@ const ProductCard = memo(function ProductCard({ title, description, image, price
       <div className="surface flex h-full flex-col overflow-hidden rounded-[1.75rem]">
         <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-bg-secondary)]">
           <div className="absolute left-4 top-4 z-20 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-dark)] shadow-[0_10px_24px_rgba(73,45,20,0.08)]">
-            <EggOff className="h-3 w-3 text-[var(--color-gold)]" aria-hidden="true" />
+            <EggOff
+              className="h-3 w-3 text-[var(--color-gold)]"
+              aria-hidden="true"
+            />
             Eggless
           </div>
 
-          {!loaded && !imgError && <div className="absolute inset-0 animate-pulse bg-white/30" />}
+          {!loaded && !imgError && (
+            <div className="absolute inset-0 animate-pulse bg-white/30" />
+          )}
 
           {imgError ? (
             <div className="absolute inset-0 grid place-items-center">
-              <Cake className="h-12 w-12 text-[var(--color-gold)]/30" aria-hidden="true" />
+              <Cake
+                className="h-12 w-12 text-[var(--color-gold)]/30"
+                aria-hidden="true"
+              />
             </div>
           ) : (
             <Image
@@ -70,12 +85,18 @@ const ProductCard = memo(function ProductCard({ title, description, image, price
 
         <div className="flex flex-1 flex-col justify-between p-6">
           <div>
-            <h3 className="pretty text-lg font-semibold text-[var(--color-text-dark)] sm:text-xl">{title}</h3>
-            <p className="pretty mt-2.5 text-sm leading-relaxed text-[var(--color-text-muted)]">{description}</p>
+            <h3 className="pretty text-lg font-semibold text-[var(--color-text-dark)] sm:text-xl">
+              {title}
+            </h3>
+            <p className="pretty mt-2.5 text-sm leading-relaxed text-[var(--color-text-muted)]">
+              {description}
+            </p>
           </div>
 
           <div className="mt-5">
-            <p className="text-lg font-semibold text-[var(--color-gold)]">{price}</p>
+            <p className="text-lg font-semibold text-[var(--color-gold)]">
+              {price}
+            </p>
             {/* Visual affordance only — click is handled by the outer article element */}
             <span
               aria-hidden="true"

@@ -1,0 +1,806 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Bee Bakes by Vartika — brag</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "BeeSerif";
+        src: local("Georgia");
+        font-weight: 400 700;
+      }
+      @font-face {
+        font-family: "BeeSerif";
+        src: local("Georgia Italic");
+        font-style: italic;
+        font-weight: 400;
+      }
+      :root {
+        --cream: #fbf7f1;
+        --cocoa: #2f221b;
+        --gold: #9f6636;
+        --muted: #6f5846;
+        --card-border: rgba(159, 102, 54, 0.16);
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+        font-family: "Montserrat", sans-serif;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      .scene {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      #scene1 {
+        z-index: 1;
+        background: var(--cocoa);
+      }
+      #scene2 {
+        z-index: 2;
+        background: var(--cream);
+        opacity: 0;
+      }
+      #scene3 {
+        z-index: 3;
+        background: var(--cream);
+        opacity: 0;
+      }
+      #scene4 {
+        z-index: 4;
+        background: var(--cream);
+        opacity: 0;
+      }
+      #scene5 {
+        z-index: 5;
+        background: var(--cocoa);
+        opacity: 0;
+      }
+
+      /* Halo — scene 1 */
+      #halo {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 1500px;
+        height: 1500px;
+        margin: -750px 0 0 -750px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(159, 102, 54, 0.28) 0%,
+          rgba(159, 102, 54, 0.08) 45%,
+          transparent 70%
+        );
+      }
+      #halo2 {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 1400px;
+        height: 1400px;
+        margin: -700px 0 0 -700px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(159, 102, 54, 0.22) 0%,
+          rgba(159, 102, 54, 0.06) 45%,
+          transparent 70%
+        );
+      }
+
+      .logo-badge {
+        position: absolute;
+        left: 50%;
+        border-radius: 50%;
+        background: var(--cream);
+        border: 3px solid rgba(159, 102, 54, 0.35);
+        box-shadow: 0 24px 60px rgba(47, 34, 27, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        opacity: 0;
+      }
+      .logo-badge img {
+        width: 88%;
+        height: 88%;
+        object-fit: contain;
+      }
+
+      /* Brand wordmark */
+      #wordmark {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 330px;
+        text-align: center;
+      }
+      #wordmark .brand {
+        margin: 0;
+        font-family: "BeeSerif", Georgia, serif;
+        font-weight: 700;
+        font-size: 168px;
+        line-height: 0.95;
+        color: var(--cream);
+        letter-spacing: 0.01em;
+        opacity: 0;
+      }
+      #wordmark .byline {
+        margin: 14px 0 0;
+        font-family: "BeeSerif", Georgia, serif;
+        font-style: italic;
+        font-size: 42px;
+        color: var(--gold);
+        opacity: 0;
+      }
+      #wordmark .subline {
+        margin: 34px auto 0;
+        max-width: 980px;
+        font-size: 30px;
+        font-weight: 400;
+        color: rgba(251, 247, 241, 0.85);
+        line-height: 1.4;
+        opacity: 0;
+      }
+
+      /* Shared scene chrome */
+      .eyebrow {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-style: italic;
+        opacity: 0;
+      }
+      .scene-body {
+        position: absolute;
+        left: 140px;
+        right: 140px;
+        top: 150px;
+      }
+
+      /* Scene 2 — cakes */
+      .cake-grid {
+        position: absolute;
+        left: 120px;
+        right: 120px;
+        top: 280px;
+        display: flex;
+        justify-content: space-between;
+        gap: 40px;
+      }
+      .cake-card {
+        width: 520px;
+        border-radius: 28px;
+        background: rgba(255, 255, 255, 0.78);
+        border: 1px solid var(--card-border);
+        box-shadow: 0 24px 60px rgba(73, 45, 20, 0.08);
+        padding: 26px 26px 30px;
+        opacity: 0;
+      }
+      .cake-card img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        border-radius: 18px;
+        display: block;
+      }
+      .cake-card .name {
+        margin: 20px 0 6px;
+        font-family: "BeeSerif", Georgia, serif;
+        font-size: 27px;
+        font-weight: 700;
+        color: var(--cocoa);
+        line-height: 1.15;
+      }
+      .cake-card .price {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--gold);
+      }
+
+      /* Scene 3 — promise stats */
+      .stat-row {
+        display: flex;
+        align-items: baseline;
+        gap: 26px;
+        margin-bottom: 34px;
+        opacity: 0;
+      }
+      .stat-row .num {
+        font-family: "BeeSerif", Georgia, serif;
+        font-weight: 700;
+        font-size: 64px;
+        color: var(--gold);
+        min-width: 220px;
+      }
+      .stat-row .txt {
+        font-size: 34px;
+        font-weight: 600;
+        color: var(--cocoa);
+      }
+
+      /* Scene 4 — ordering flow */
+      .flow-step {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-bottom: 30px;
+        opacity: 0;
+      }
+      .flow-step .num {
+        width: 76px;
+        height: 76px;
+        border-radius: 22px;
+        background: rgba(159, 102, 54, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        font-weight: 700;
+        color: var(--gold);
+      }
+      .flow-step .label {
+        font-size: 40px;
+        font-weight: 600;
+        color: var(--cocoa);
+      }
+      .flow-step .label em {
+        font-style: normal;
+        color: var(--gold);
+        font-weight: 700;
+      }
+      #bubble {
+        position: absolute;
+        left: 620px;
+        top: 620px;
+        background: var(--cocoa);
+        color: var(--cream);
+        border-radius: 26px 26px 26px 6px;
+        padding: 24px 34px;
+        font-size: 30px;
+        font-weight: 500;
+        box-shadow: 0 20px 50px rgba(47, 34, 27, 0.25);
+        opacity: 0;
+      }
+      #bubble b {
+        color: #4ade80;
+      }
+
+      /* Scene 5 — outro */
+      #outro-line {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 460px;
+        text-align: center;
+        font-family: "BeeSerif", Georgia, serif;
+        font-size: 74px;
+        font-weight: 700;
+        color: var(--cream);
+        opacity: 0;
+      }
+      #logo-lock {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 640px;
+        text-align: center;
+        opacity: 0;
+      }
+      #logoBadge1 {
+        top: 96px;
+        width: 220px;
+        height: 220px;
+        margin-left: -110px;
+      }
+      #logoBadge5 {
+        top: 120px;
+        width: 250px;
+        height: 250px;
+        margin-left: -125px;
+      }
+      #logo-lock .brand {
+        margin: 0;
+        font-family: "BeeSerif", Georgia, serif;
+        font-weight: 700;
+        font-size: 92px;
+        color: var(--cream);
+      }
+      #logo-lock .byline {
+        margin: 10px 0 0;
+        font-family: "BeeSerif", Georgia, serif;
+        font-style: italic;
+        font-size: 34px;
+        color: var(--gold);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-width="1920"
+      data-height="1080"
+      data-duration="20"
+    >
+      <!-- Scene 1: Brand lockup 0–4 -->
+      <div id="scene1" class="scene">
+        <div id="halo"></div>
+        <div class="logo-badge" id="logoBadge1">
+          <img src="assets/images/logo.jpg" alt="Bee Bakes logo" />
+        </div>
+        <div id="wordmark">
+          <h1 class="brand">Bee Bakes</h1>
+          <p class="byline">by Vartika</p>
+          <p class="subline">Custom cakes with a calmer, cleaner finish.</p>
+        </div>
+      </div>
+
+      <!-- Scene 2: The cakes 3.65–9.85 -->
+      <div id="scene2" class="scene">
+        <div class="scene-body">
+          <p class="eyebrow" id="eyebrow2">Featured Cakes</p>
+        </div>
+        <div class="cake-grid" id="cakeGrid">
+          <div class="cake-card" id="cake1">
+            <img
+              src="assets/images/cake_london_caramel.webp"
+              alt="London Viral Whipped Caramel Cream Cake"
+            />
+            <p class="name">London Viral Whipped Caramel Cream Cake</p>
+            <p class="price">Rs 700</p>
+          </div>
+          <div class="cake-card" id="cake2">
+            <img src="assets/images/cake_tiramisu.webp" alt="Tiramisu Cake" />
+            <p class="name">Tiramisu Cake</p>
+            <p class="price">Rs 600</p>
+          </div>
+          <div class="cake-card" id="cake3">
+            <img
+              src="assets/images/cake_cheesecake_biscoff.webp"
+              alt="Biscoff Cheesecake"
+            />
+            <p class="name">Biscoff Cheesecake</p>
+            <p class="price">Rs 800</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 3: The promise 9.85–13.65 -->
+      <div id="scene3" class="scene">
+        <div class="scene-body">
+          <p class="eyebrow" id="eyebrow3">Baked fresh in Bikaner</p>
+          <div style="margin-top: 90px">
+            <div class="stat-row" id="stat1">
+              <span class="num">100%</span
+              ><span class="txt">Eggless builds available</span>
+            </div>
+            <div class="stat-row" id="stat2">
+              <span class="num">Fresh</span
+              ><span class="txt">Baked close to the delivery window</span>
+            </div>
+            <div class="stat-row" id="stat3">
+              <span class="num">Bikaner</span
+              ><span class="txt">Rajasthan — local handoff</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 4: Ordering flow 13.65–17.55 -->
+      <div id="scene4" class="scene">
+        <div class="scene-body">
+          <p class="eyebrow" id="eyebrow4">Simple ordering</p>
+          <div style="margin-top: 70px">
+            <div class="flow-step" id="step1">
+              <span class="num">1</span
+              ><span class="label">Choose your cake</span>
+            </div>
+            <div class="flow-step" id="step2">
+              <span class="num">2</span
+              ><span class="label">Share the details</span>
+            </div>
+            <div class="flow-step" id="step3">
+              <span class="num">3</span
+              ><span class="label"
+                >Confirm &amp; <em>receive on WhatsApp</em></span
+              >
+            </div>
+          </div>
+          <div id="bubble">
+            <b>&#10003;</b>&nbsp; Bee Bakes · Order confirmed — baking fresh for
+            you
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 5: Logo out 17.55–20 -->
+      <div id="scene5" class="scene">
+        <div id="halo2"></div>
+        <div class="logo-badge" id="logoBadge5">
+          <img src="assets/images/logo.jpg" alt="Bee Bakes logo" />
+        </div>
+        <div id="outro-line">Order on WhatsApp.</div>
+        <div id="logo-lock">
+          <p class="brand">Bee Bakes</p>
+          <p class="byline">by Vartika</p>
+        </div>
+      </div>
+
+      <!-- Music + SFX -->
+      <audio
+        id="music"
+        src="assets/music/happy-beats-business-moves-vol-9-by-ende-dot-app.mp3"
+        data-start="0"
+        data-duration="20"
+        data-track-index="10"
+        data-volume="0.55"
+      ></audio>
+      <audio
+        id="sfx-card"
+        src="assets/sfx/casino/card-slide-1.ogg"
+        data-start="5.28"
+        data-duration="2.7"
+        data-track-index="11"
+        data-volume="0"
+      ></audio>
+      <audio
+        id="sfx-click"
+        src="assets/sfx/interface/click_003.ogg"
+        data-start="16.34"
+        data-duration="0.2"
+        data-track-index="11"
+        data-volume="0"
+      ></audio>
+      <audio
+        id="sfx-bell"
+        src="assets/sfx/impact/impactBell_heavy_000.ogg"
+        data-start="19.5"
+        data-duration="0.6"
+        data-track-index="11"
+        data-volume="0"
+      ></audio>
+    </div>
+
+    <script src="assets/audio-data.js"></script>
+    <script>
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      // ── Scene 1: Brand lockup (0 – 4) ──
+      tl.fromTo(
+        "#halo",
+        { opacity: 0, scale: 0.85 },
+        { opacity: 1, scale: 1, duration: 1.4, ease: "power2.out" },
+        0.3,
+      );
+      tl.fromTo(
+        "#logoBadge1",
+        { y: -30, opacity: 0, scale: 0.7 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.7, ease: "back.out(1.4)" },
+        0.55,
+      );
+      tl.fromTo(
+        "#wordmark .brand",
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out" },
+        1.0,
+      );
+      tl.fromTo(
+        "#wordmark .byline",
+        { y: 24, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+        1.35,
+      );
+      tl.fromTo(
+        "#wordmark .subline",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power2.out" },
+        1.6,
+      );
+      tl.to(
+        "#scene1",
+        {
+          filter: "blur(15px)",
+          scale: 1.03,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.inOut",
+        },
+        3.65,
+      );
+      tl.set("#scene1", { visibility: "hidden" }, 4.15);
+
+      // ── Scene 2: The cakes (3.65 – 9.85) ──
+      tl.fromTo(
+        "#scene2",
+        { filter: "blur(15px)", scale: 0.97, opacity: 0 },
+        {
+          filter: "blur(0px)",
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.inOut",
+        },
+        3.65,
+      );
+      tl.fromTo(
+        "#eyebrow2",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+        3.7,
+      ); // beat-locked: 3.70 strong cue
+      // cake cards, beat-locked to strong cues 5.28 / 6.34 / 7.92
+      tl.fromTo(
+        "#cake1",
+        { y: 60, opacity: 0, scale: 0.94 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" },
+        5.28,
+      );
+      tl.fromTo(
+        "#cake2",
+        { y: 60, opacity: 0, scale: 0.94 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" },
+        6.34,
+      );
+      tl.fromTo(
+        "#cake3",
+        { y: 60, opacity: 0, scale: 0.94 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" },
+        7.92,
+      );
+      // card landing SFX
+      tl.fromTo(
+        "#sfx-card",
+        { volume: 0 },
+        { volume: 0.5, duration: 0.02 },
+        5.28,
+      );
+      tl.to("#sfx-card", { volume: 0, duration: 0.02 }, 5.34);
+      tl.fromTo(
+        "#sfx-card",
+        { volume: 0 },
+        { volume: 0.5, duration: 0.02 },
+        6.34,
+      );
+      tl.to("#sfx-card", { volume: 0, duration: 0.02 }, 6.4);
+      tl.fromTo(
+        "#sfx-card",
+        { volume: 0 },
+        { volume: 0.5, duration: 0.02 },
+        7.92,
+      );
+      tl.to("#sfx-card", { volume: 0, duration: 0.02 }, 7.98);
+      tl.to(
+        "#scene2",
+        {
+          filter: "blur(15px)",
+          scale: 1.03,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.inOut",
+        },
+        9.55,
+      );
+      tl.set("#scene2", { visibility: "hidden" }, 10.05);
+
+      // ── Scene 3: The promise (9.85 – 13.65) ──
+      tl.fromTo(
+        "#scene3",
+        { filter: "blur(15px)", scale: 0.97, opacity: 0 },
+        {
+          filter: "blur(0px)",
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.inOut",
+        },
+        9.55,
+      );
+      tl.fromTo(
+        "#eyebrow3",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+        10.0,
+      );
+      // stat rows snap to beat grid 11.06 / 11.60 / 12.12
+      tl.fromTo(
+        "#stat1",
+        { x: 40, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+        11.06,
+      );
+      tl.fromTo(
+        "#stat2",
+        { x: 40, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+        11.6,
+      );
+      tl.fromTo(
+        "#stat3",
+        { x: 40, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+        12.12,
+      );
+      tl.to(
+        "#scene3",
+        {
+          filter: "blur(15px)",
+          scale: 1.03,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.inOut",
+        },
+        13.35,
+      );
+      tl.set("#scene3", { visibility: "hidden" }, 13.85);
+
+      // ── Scene 4: Ordering flow (13.65 – 17.55) ──
+      tl.fromTo(
+        "#scene4",
+        { filter: "blur(15px)", scale: 0.97, opacity: 0 },
+        {
+          filter: "blur(0px)",
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.inOut",
+        },
+        13.35,
+      );
+      tl.fromTo(
+        "#eyebrow4",
+        { y: 16, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
+        14.0,
+      );
+      tl.fromTo(
+        "#step1",
+        { x: 44, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+        14.76,
+      );
+      tl.fromTo(
+        "#step2",
+        { x: 44, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+        15.28,
+      );
+      tl.fromTo(
+        "#step3",
+        { x: 44, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.45, ease: "power3.out" },
+        15.81,
+      );
+      tl.fromTo(
+        "#bubble",
+        { y: 20, opacity: 0, scale: 0.9 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.4, ease: "back.out(1.6)" },
+        16.34,
+      );
+      tl.fromTo(
+        "#sfx-click",
+        { volume: 0 },
+        { volume: 0.35, duration: 0.02 },
+        16.34,
+      );
+      tl.to("#sfx-click", { volume: 0, duration: 0.02 }, 16.4);
+      tl.to(
+        "#scene4",
+        {
+          filter: "blur(15px)",
+          scale: 1.03,
+          opacity: 0,
+          duration: 0.5,
+          ease: "power2.inOut",
+        },
+        17.25,
+      );
+      tl.set("#scene4", { visibility: "hidden" }, 17.75);
+
+      // ── Scene 5: Logo out (17.55 – 20) ──
+      tl.fromTo(
+        "#scene5",
+        { filter: "blur(15px)", scale: 0.97, opacity: 0 },
+        {
+          filter: "blur(0px)",
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.inOut",
+        },
+        17.25,
+      );
+      tl.fromTo(
+        "#halo2",
+        { opacity: 0, scale: 0.85 },
+        { opacity: 1, scale: 1, duration: 1.2, ease: "power2.out" },
+        17.6,
+      );
+      tl.fromTo(
+        "#logoBadge5",
+        { y: 30, opacity: 0, scale: 0.6 },
+        { y: 0, opacity: 1, scale: 1, duration: 0.6, ease: "back.out(1.6)" },
+        18.0,
+      );
+      tl.fromTo(
+        "#outro-line",
+        { y: 24, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power3.out" },
+        18.6,
+      );
+      tl.fromTo(
+        "#logo-lock",
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.55, ease: "power3.out" },
+        19.3,
+      );
+      tl.fromTo(
+        "#sfx-bell",
+        { volume: 0 },
+        { volume: 0.4, duration: 0.02 },
+        19.5,
+      );
+      tl.to("#sfx-bell", { volume: 0, duration: 0.02 }, 19.56);
+      tl.to("#music", { volume: 0.12, duration: 1.2, ease: "power2.in" }, 19.0);
+      tl.set("#scene5", { visibility: "hidden" }, 20);
+
+      // ── Audio-reactive: halos + cake grid breathe with bass (gated to post-entrance windows) ──
+      var frames = AUDIO_DATA.frames;
+      var FPS = AUDIO_DATA.fps;
+      var T = 20;
+      var f, time, bass;
+      for (f = 0; f < T * FPS; f++) {
+        time = f / FPS;
+        bass = frames[f].bands[0];
+        tl.call(
+          (function (t, b) {
+            return function () {
+              if (t >= 2.0 && t < 3.6) {
+                gsap.set("#halo", {
+                  scale: 1 + b * 0.05,
+                  opacity: 0.9 + b * 0.08,
+                });
+              }
+              if (t >= 7.0 && t <= 9.5) {
+                gsap.set("#cakeGrid", { scale: 1 + b * 0.012 });
+              }
+              if (t >= 19.2 && t < 20) {
+                gsap.set("#halo2", {
+                  scale: 1 + b * 0.05,
+                  opacity: 0.9 + b * 0.08,
+                });
+              }
+            };
+          })(time, bass),
+          [],
+          time,
+        );
+      }
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

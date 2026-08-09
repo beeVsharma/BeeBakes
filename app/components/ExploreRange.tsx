@@ -15,10 +15,15 @@ export default function ExploreRange({ onSelectProduct }: Props) {
   const [activeTab, setActiveTab] = useState<Category>("All Items");
 
   const visibleProducts =
-    activeTab === "All Items" ? allProducts : allProducts.filter((product) => product.category === activeTab);
+    activeTab === "All Items"
+      ? allProducts
+      : allProducts.filter((product) => product.category === activeTab);
 
   return (
-    <section id="range" className="scroll-mt-28 px-4 py-20 md:scroll-mt-32 md:py-24">
+    <section
+      id="range"
+      className="scroll-mt-28 px-4 py-20 md:scroll-mt-32 md:py-24"
+    >
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
@@ -30,8 +35,9 @@ export default function ExploreRange({ onSelectProduct }: Props) {
             </h2>
           </div>
           <p className="pretty max-w-2xl text-base leading-relaxed text-[var(--color-text-muted)]">
-            A curated selection across our most-loved categories — pick a tab to find what suits your
-            occasion, whether it is a birthday, a gift, or a simple treat.
+            A curated selection across our most-loved categories — pick a tab to
+            find what suits your occasion, whether it is a birthday, a gift, or
+            a simple treat.
           </p>
         </div>
 
@@ -64,9 +70,15 @@ export default function ExploreRange({ onSelectProduct }: Props) {
 
         <div className="mb-5 flex items-center justify-between gap-4">
           <p className="text-sm text-[var(--color-text-muted)]">
-            Showing <span className="font-semibold text-[var(--color-text-dark)]">{visibleProducts.length}</span> items
+            Showing{" "}
+            <span className="font-semibold text-[var(--color-text-dark)]">
+              {visibleProducts.length}
+            </span>{" "}
+            items
           </p>
-          <p className="text-sm text-[var(--color-text-muted)]">Live updates based on the selected category</p>
+          <p className="text-sm text-[var(--color-text-muted)]">
+            Live updates based on the selected category
+          </p>
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-4">
@@ -84,7 +96,9 @@ export default function ExploreRange({ onSelectProduct }: Props) {
             >
               <div className="flex flex-col h-full justify-between">
                 <div>
-                  <div className={`relative overflow-hidden bg-[var(--color-bg-secondary)] ${activeTab === "All Items" && idx === 0 ? "aspect-[16/10]" : "aspect-[4/3]"}`}>
+                  <div
+                    className={`relative overflow-hidden bg-[var(--color-bg-secondary)] ${activeTab === "All Items" && idx === 0 ? "aspect-[16/10]" : "aspect-[4/3]"}`}
+                  >
                     <Image
                       src={product.image}
                       alt={product.title}
@@ -102,7 +116,9 @@ export default function ExploreRange({ onSelectProduct }: Props) {
                       <h3 className="pretty text-lg font-semibold text-[var(--color-text-dark)]">
                         {product.title}
                       </h3>
-                      <p className="shrink-0 text-sm font-semibold text-[var(--color-gold)]">{product.price}</p>
+                      <p className="shrink-0 text-sm font-semibold text-[var(--color-gold)]">
+                        {product.price}
+                      </p>
                     </div>
                     <p className="mt-2 text-sm leading-relaxed text-[var(--color-text-muted)]">
                       {product.description}
@@ -111,9 +127,7 @@ export default function ExploreRange({ onSelectProduct }: Props) {
                 </div>
 
                 <div className="p-5 pt-0">
-                  <span
-                    className="inline-flex items-center justify-center rounded-full border border-[var(--color-card-border)] bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-dark)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-[var(--color-gold)] group-hover:bg-[var(--color-gold)] group-hover:text-white"
-                  >
+                  <span className="inline-flex items-center justify-center rounded-full border border-[var(--color-card-border)] bg-white px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--color-text-dark)] transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-[var(--color-gold)] group-hover:bg-[var(--color-gold)] group-hover:text-white">
                     See details
                   </span>
                 </div>

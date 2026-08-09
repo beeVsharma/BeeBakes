@@ -2,11 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ShoppingCart, Clock } from "lucide-react";
+import { X, ShoppingCart, Clock, ExternalLink } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import FocusTrap from "./FocusTrap";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
 import type { Product } from "@/lib/products";
+import { slugify } from "@/lib/products";
 
 type Props = {
   product: Product | null;
@@ -95,10 +97,15 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                     <p className="text-xs font-medium uppercase tracking-[0.2em] text-[var(--color-gold)]">
                       Bee Bakes exclusive
                     </p>
-                    <h2 id="product-modal-title" className="balance mt-2 text-2xl font-semibold text-[var(--color-text-dark)] sm:text-3xl">
+                    <h2
+                      id="product-modal-title"
+                      className="balance mt-2 text-2xl font-semibold text-[var(--color-text-dark)] sm:text-3xl"
+                    >
                       {product.title}
                     </h2>
-                    <p className="mt-3 text-xl font-semibold text-[var(--color-gold)] sm:text-2xl">{product.price}</p>
+                    <p className="mt-3 text-xl font-semibold text-[var(--color-gold)] sm:text-2xl">
+                      {product.price}
+                    </p>
 
                     <p
                       id="product-modal-description"
@@ -110,12 +117,18 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                     <div className="mt-5 space-y-3">
                       {product.weight && (
                         <div className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                          <ShoppingCart className="h-4 w-4 text-[var(--color-gold)]" aria-hidden="true" />
+                          <ShoppingCart
+                            className="h-4 w-4 text-[var(--color-gold)]"
+                            aria-hidden="true"
+                          />
                           <span>Weight: {product.weight}</span>
                         </div>
                       )}
                       <div className="flex items-center gap-2 text-sm text-[var(--color-text-muted)]">
-                        <Clock className="h-4 w-4 text-[var(--color-gold)]" aria-hidden="true" />
+                        <Clock
+                          className="h-4 w-4 text-[var(--color-gold)]"
+                          aria-hidden="true"
+                        />
                         <span>Takeaway From Home</span>
                       </div>
                     </div>
@@ -148,6 +161,15 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                       Continue on WhatsApp
                       <span className="sr-only">(opens in new tab)</span>
                     </a>
+
+                    <Link
+                      href={`/products/${slugify(product.title)}`}
+                      onClick={onClose}
+                      className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[var(--color-card-border)] bg-white px-5 py-3 text-sm font-medium text-[var(--color-text-dark)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+                    >
+                      <ExternalLink className="h-4 w-4" aria-hidden="true" />
+                      View full product page
+                    </Link>
                   </div>
                 </div>
               </motion.div>

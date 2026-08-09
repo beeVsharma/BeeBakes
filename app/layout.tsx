@@ -27,7 +27,9 @@ const outfit = Outfit({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Bee Bakes by Vartika | Custom Cakes, Cookies, and Dessert Boxes in Bikaner",
+  alternates: { canonical: "/" },
+  title:
+    "Bee Bakes by Vartika | Custom Cakes, Cookies, and Dessert Boxes in Bikaner",
   description:
     "Handmade eggless cakes, artisan cookies, and custom dessert boxes baked fresh in Bikaner. Simple ordering, careful finishing, and delivery for celebrations.",
   keywords: [
@@ -50,12 +52,21 @@ export const metadata: Metadata = {
     locale: "en_IN",
     siteName: "Bee Bakes by Vartika",
     url: SITE_URL,
+    images: [
+      {
+        url: `${SITE_URL}/images/logo.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "Bee Bakes by Vartika logo",
+      },
+    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Bee Bakes by Vartika",
     description:
       "Handmade eggless cakes, artisan cookies, and custom dessert boxes baked fresh in Bikaner.",
+    images: [`${SITE_URL}/images/logo.jpg`],
   },
   icons: {
     icon: "/favicon.ico",

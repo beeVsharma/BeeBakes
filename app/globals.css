@@ -15,16 +15,25 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 96px;
 }
 
 body {
   background:
-    radial-gradient(circle at top left, rgba(159, 102, 54, 0.08), transparent 26%),
-    radial-gradient(circle at bottom right, rgba(239, 227, 215, 0.92), transparent 35%),
+    radial-gradient(
+      circle at top left,
+      rgba(159, 102, 54, 0.08),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(239, 227, 215, 0.92),
+      transparent 35%
+    ),
     var(--color-bg-light);
   color: var(--color-text-dark);
   font-family: var(--font-lato), "Outfit", system-ui, sans-serif;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
 }
 
@@ -47,7 +56,12 @@ body > * {
   z-index: 1;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-playfair), "Fraunces", serif;
   letter-spacing: -0.02em;
 }
@@ -57,7 +71,8 @@ button,
 input,
 textarea,
 select {
-  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-property:
+    color, background-color, border-color, box-shadow, transform, opacity;
   transition-duration: 220ms;
   transition-timing-function: ease;
 }
@@ -109,7 +124,10 @@ select:focus-visible {
   border: 1px solid var(--color-card-border);
   box-shadow: 0 14px 40px rgba(73, 45, 20, 0.08);
   backdrop-filter: blur(14px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .glass-card:hover {
