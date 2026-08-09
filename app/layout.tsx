@@ -28,6 +28,9 @@ const outfit = Outfit({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: { canonical: "/" },
+  verification: {
+    google: "Hca-qpGb9D8wj9StU5v_s2lFgR9sdrk_IUGXbjhewc8",
+  },
   title:
     "Bee Bakes by Vartika | Custom Cakes, Cookies, and Dessert Boxes in Bikaner",
   description:
