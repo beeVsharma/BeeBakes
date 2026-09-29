@@ -9,6 +9,7 @@ import FeaturesBar from "./components/FeaturesBar";
 import AnimatedSection from "./components/AnimatedSection";
 import ProductCard from "./components/ProductCard";
 import CustomCakes from "./components/CustomCakes";
+import AboutBaker from "./components/AboutBaker";
 import ExploreRange from "./components/ExploreRange";
 import InstagramFeed from "./components/InstagramFeed";
 import TestimonialsCarousel from "./components/TestimonialsCarousel";
@@ -130,6 +131,8 @@ export default function Home() {
 
           <CustomCakes onOpenCustomOrder={() => setIsCustomOrderOpen(true)} />
 
+          <AboutBaker />
+
           <ExploreRange
             onSelectProduct={(product) => setSelectedProduct(product)}
           />
@@ -232,6 +235,130 @@ export default function Home() {
             onClose={() => setIsCustomOrderOpen(false)}
           />
 
+          {/* ── FAQ Section — "Baking & delivery in Bikaner" ── */}
+          <AnimatedSection id="faq" className="scroll-mt-28 py-20 px-4 md:scroll-mt-32 md:py-24">
+            <div className="mx-auto max-w-7xl">
+              <div className="mb-14 grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
+                <div>
+                  <p className="mb-3 text-lg md:text-xl font-bold tracking-[0.24em] uppercase text-[var(--color-gold)] italic">
+                    Common Questions
+                  </p>
+                  <h2 className="balance max-w-xl text-3xl font-semibold text-[var(--color-text-dark)] md:text-4xl">
+                    Baking & delivery in Bikaner
+                  </h2>
+                </div>
+                <p className="pretty max-w-2xl text-base leading-relaxed text-[var(--color-text-muted)]">
+                  Quick answers to the questions we get most often. If something isn&rsquo;t covered here, drop us a message on WhatsApp.
+                </p>
+              </div>
+
+              <div className="mx-auto max-w-3xl divide-y divide-[var(--color-card-border)]">
+                <details className="group py-5" open>
+                  <summary className="flex cursor-pointer items-center justify-between text-base font-semibold text-[var(--color-text-dark)] md:text-lg">
+                    How much advance notice do I need to place an order?
+                    <span className="ml-4 text-[var(--color-gold)] transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                    We ask for at least 48 hours for custom cakes so we can bake fresh and give proper attention to design. Cookies and standard flavours can sometimes be ready same-day — just confirm availability on WhatsApp.
+                  </p>
+                </details>
+
+                <details className="group py-5">
+                  <summary className="flex cursor-pointer items-center justify-between text-base font-semibold text-[var(--color-text-dark)] md:text-lg">
+                    Are all your cakes eggless?
+                    <span className="ml-4 text-[var(--color-gold)] transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                    Yes, every cake and cookie we make is 100% eggless. We use premium-quality butter, cream, and vegetarian ingredients. No compromise on taste or texture.
+                  </p>
+                </details>
+
+                <details className="group py-5">
+                  <summary className="flex cursor-pointer items-center justify-between text-base font-semibold text-[var(--color-text-dark)] md:text-lg">
+                    Do you deliver across Bikaner?
+                    <span className="ml-4 text-[var(--color-gold)] transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                    We currently operate as a takeaway-from-home studio in Bikaner. You can pick up your order directly from our home kitchen. For special arrangements, message us on WhatsApp and we&rsquo;ll work something out.
+                  </p>
+                </details>
+
+                <details className="group py-5">
+                  <summary className="flex cursor-pointer items-center justify-between text-base font-semibold text-[var(--color-text-dark)] md:text-lg">
+                    Can I get a fully custom design with photo toppers and themes?
+                    <span className="ml-4 text-[var(--color-gold)] transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                    Absolutely. Share your theme, color preferences, and any photos on WhatsApp. We handle photo toppers, name toppers, custom shapes, and themed designs for birthdays, anniversaries, and corporate events.
+                  </p>
+                </details>
+
+                <details className="group py-5">
+                  <summary className="flex cursor-pointer items-center justify-between text-base font-semibold text-[var(--color-text-dark)] md:text-lg">
+                    What is the price range for cakes?
+                    <span className="ml-4 text-[var(--color-gold)] transition-transform group-open:rotate-45">+</span>
+                  </summary>
+                  <p className="mt-3 text-sm leading-relaxed text-[var(--color-text-muted)]">
+                    Our cakes start at ₹400 for a 1 Pound classic flavour (vanilla, black forest) and go up to ₹800 for premium cheesecakes (Biscoff, Nutella). Cookies start at ₹220 per box. Custom designs may vary — just ask for a quote on WhatsApp.
+                  </p>
+                </details>
+              </div>
+            </div>
+
+            {/* FAQPage JSON-LD for Google rich results */}
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: [
+                    {
+                      "@type": "Question",
+                      name: "How much advance notice do I need to place an order?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "We ask for at least 48 hours for custom cakes so we can bake fresh and give proper attention to design. Cookies and standard flavours can sometimes be ready same-day — just confirm availability on WhatsApp.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "Are all your cakes eggless?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Yes, every cake and cookie we make is 100% eggless. We use premium-quality butter, cream, and vegetarian ingredients. No compromise on taste or texture.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "Do you deliver across Bikaner?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "We currently operate as a takeaway-from-home studio in Bikaner. You can pick up your order directly from our home kitchen. For special arrangements, message us on WhatsApp.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "Can I get a fully custom design with photo toppers and themes?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Absolutely. Share your theme, color preferences, and any photos on WhatsApp. We handle photo toppers, name toppers, custom shapes, and themed designs for birthdays, anniversaries, and corporate events.",
+                      },
+                    },
+                    {
+                      "@type": "Question",
+                      name: "What is the price range for cakes?",
+                      acceptedAnswer: {
+                        "@type": "Answer",
+                        text: "Our cakes start at ₹400 for a 1 Pound classic flavour and go up to ₹800 for premium cheesecakes. Cookies start at ₹220 per box. Custom designs may vary.",
+                      },
+                    },
+                  ],
+                }),
+              }}
+            />
+          </AnimatedSection>
+
           <footer
             id="footer"
             className="border-t border-[var(--color-card-border)] px-4 py-14 md:py-16"
@@ -287,7 +414,7 @@ export default function Home() {
                       href="#products"
                       className="hover:text-[var(--color-gold)]"
                     >
-                      Our cakes
+                      Featured cakes
                     </a>
                   </li>
                   <li>
@@ -296,6 +423,30 @@ export default function Home() {
                       className="hover:text-[var(--color-gold)]"
                     >
                       Custom cakes
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#about"
+                      className="hover:text-[var(--color-gold)]"
+                    >
+                      About Vartika
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#range"
+                      className="hover:text-[var(--color-gold)]"
+                    >
+                      Explore menu
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#faq"
+                      className="hover:text-[var(--color-gold)]"
+                    >
+                      Common questions
                     </a>
                   </li>
                   <li>
@@ -327,18 +478,20 @@ export default function Home() {
 
               <div>
                 <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-text-dark)]">
-                  Visit
+                  Bakery Studio
                 </h4>
                 <ul className="space-y-2.5 text-sm text-[var(--color-text-muted)]">
-                  <li>Premium Cloud Bakery</li>
-                  <li>Bikaner, Rajasthan</li>
-                  <li>Order slot confirmation on WhatsApp</li>
+                  <li className="font-medium text-[var(--color-text-dark)]">Bee Bakes by Vartika</li>
+                  <li>Home Bakery Studio</li>
+                  <li>Bikaner, Rajasthan 334001</li>
+                  <li>Takeaway & Local Pick-up</li>
+                  <li className="pt-1 text-xs text-[var(--color-gold)] font-medium">9:00 AM – 9:00 PM (Bake-to-order)</li>
                 </ul>
               </div>
 
               <div>
                 <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--color-text-dark)]">
-                  Follow
+                  Follow & Connect
                 </h4>
                 <a
                   href={INSTAGRAM_URL}
@@ -350,7 +503,16 @@ export default function Home() {
                   Instagram
                   <span className="sr-only">(opens in new tab)</span>
                 </a>
+                <p className="mt-4 text-xs leading-relaxed text-[var(--color-text-muted)]">
+                  Fresh cake videos, behind-the-counter bakes, and daily orders showcased on Instagram.
+                </p>
               </div>
+            </div>
+
+            <div className="mx-auto mt-12 max-w-7xl border-t border-[var(--color-card-border)] pt-8 text-center text-xs text-[var(--color-text-muted)]">
+              <p>
+                © {new Date().getFullYear()} Bee Bakes by Vartika. All rights reserved. • 100% Eggless Custom Cakes, Artisan Cookies & Cheesecakes in Bikaner, Rajasthan.
+              </p>
             </div>
           </footer>
         </main>

@@ -45,13 +45,21 @@ export default async function ProductPage({ params }: Props) {
     "@type": "Product",
     name: product.title,
     image: `${SITE_URL}${product.image}`,
-    description: product.description,
+    description: product.fullDescription || product.description,
     brand: { "@type": "Brand", name: BUSINESS_NAME },
+    category: "Bakery > Cakes & Desserts",
+    suitableForDiet: "https://schema.org/VegetarianDiet",
     offers: {
       "@type": "Offer",
+      url: `${SITE_URL}/products/${product.slug}`,
       priceCurrency: "INR",
       price: product.price.replace(/[^\d]/g, ""),
       availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      seller: {
+        "@type": "Bakery",
+        name: BUSINESS_NAME,
+      },
     },
   };
 

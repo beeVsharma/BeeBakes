@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   title:
     "Bee Bakes by Vartika | Custom Cakes, Cookies, and Dessert Boxes in Bikaner",
   description:
-    "Handmade eggless cakes, artisan cookies, and custom dessert boxes baked fresh in Bikaner. Simple ordering, careful finishing, and delivery for celebrations.",
+    "Eggless custom cakes, artisan cookies & dessert boxes baked fresh in Bikaner. ₹220–₹800. Order in 3 steps on WhatsApp — takeaway from our home studio.",
   keywords: [
     "bakery",
     "custom cakes",
@@ -43,33 +43,41 @@ export const metadata: Metadata = {
     "artisan cookies",
     "dessert boxes",
     "Bee Bakes",
+    "cake in Bikaner",
+    "birthday cake Bikaner",
+    "custom cake Bikaner",
+    "eggless bakery Bikaner",
+    "cheesecake Bikaner",
+    "anniversary cake Bikaner",
+    "homemade cookies Bikaner",
+    "Vartika Sharma bakery",
   ],
   authors: [{ name: "Bee Bakes by Vartika" }],
   creator: "Bee Bakes by Vartika",
   applicationName: "Bee Bakes by Vartika",
   openGraph: {
-    title: "Bee Bakes by Vartika",
+    title: "Bee Bakes by Vartika | Custom Cakes & Cookies in Bikaner",
     description:
-      "Handmade eggless cakes, artisan cookies, and custom dessert boxes baked fresh in Bikaner.",
+      "Eggless custom cakes, artisan cookies & dessert boxes baked fresh in Bikaner. ₹220–₹800. Order on WhatsApp.",
     type: "website",
     locale: "en_IN",
     siteName: "Bee Bakes by Vartika",
     url: SITE_URL,
     images: [
       {
-        url: `${SITE_URL}/images/logo.jpg`,
+        url: `${SITE_URL}/images/cake_london_caramel.webp`,
         width: 1200,
         height: 630,
-        alt: "Bee Bakes by Vartika logo",
+        alt: "Bee Bakes by Vartika — Handmade eggless cakes baked fresh in Bikaner",
       },
     ],
   },
   twitter: {
-    card: "summary",
-    title: "Bee Bakes by Vartika",
+    card: "summary_large_image",
+    title: "Bee Bakes by Vartika | Custom Cakes & Cookies in Bikaner",
     description:
-      "Handmade eggless cakes, artisan cookies, and custom dessert boxes baked fresh in Bikaner.",
-    images: [`${SITE_URL}/images/logo.jpg`],
+      "Eggless custom cakes, artisan cookies & dessert boxes. ₹220–₹800. Order on WhatsApp from Bikaner.",
+    images: [`${SITE_URL}/images/cake_london_caramel.webp`],
   },
   icons: {
     icon: "/favicon.ico",
@@ -93,15 +101,42 @@ export default function RootLayout({
     url: SITE_URL,
     telephone: PHONE_NUMBER,
     email: BUSINESS_EMAIL,
+    founder: {
+      "@type": "Person",
+      name: "Vartika Sharma",
+      jobTitle: "Founder & Pastry Chef",
+    },
     address: {
       "@type": "PostalAddress",
       addressLocality: "Bikaner",
       addressRegion: "Rajasthan",
       addressCountry: "IN",
     },
+    areaServed: {
+      "@type": "City",
+      name: "Bikaner",
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
+        ],
+        opens: "09:00",
+        closes: "21:00",
+      },
+    ],
     sameAs: [INSTAGRAM_URL],
     servesCuisine: "Bakery",
-    priceRange: "Rs 599 – Rs 1,499",
+    priceRange: "₹220 – ₹800",
+    paymentAccepted: "Cash, UPI, Online Transfer",
+    currenciesAccepted: "INR",
     hasMap: "https://maps.google.com/?q=Bikaner,Rajasthan",
   };
 

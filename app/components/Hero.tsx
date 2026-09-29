@@ -12,14 +12,22 @@ export default function Hero() {
 
       <div className="relative mx-auto grid max-w-7xl gap-10 px-4 md:px-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-center lg:gap-16">
         <div className="max-w-2xl">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-4 text-lg md:text-xl font-bold tracking-[0.24em] uppercase text-[var(--color-gold)] italic"
-          >
-            Bikaner bakery studio
-          </motion.p>
+          <div className="mb-4 flex flex-wrap items-center gap-3">
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-lg md:text-xl font-bold tracking-[0.24em] uppercase text-[var(--color-gold)] italic"
+            >
+              Bikaner bakery studio
+            </motion.p>
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-700/20 bg-emerald-50/90 px-3 py-1 text-xs font-semibold text-emerald-800 shadow-sm backdrop-blur-sm">
+              <span className="flex h-2.5 w-2.5 items-center justify-center rounded-sm border border-emerald-700 p-0.5" aria-hidden="true">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-700" />
+              </span>
+              100% Eggless
+            </span>
+          </div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -36,9 +44,7 @@ export default function Hero() {
             transition={{ delay: 0.25, duration: 0.75 }}
             className="pretty mt-4 max-w-lg text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base md:text-lg"
           >
-            Eggless cakes, artisan cookies, and dessert boxes baked fresh in
-            Bikaner. The result stays polished, practical, and easy to
-            coordinate from first message to final handoff.
+            Handmade eggless custom cakes, artisan cookies, and celebration dessert boxes baked fresh to order in Bikaner. Designed with care, balanced sweetness, and delivered with a reliable finish.
           </motion.p>
 
           <motion.div
@@ -61,29 +67,37 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3 md:mt-10">
-            <div className="surface rounded-2xl px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+          <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4 md:mt-10">
+            <div className="surface rounded-2xl px-3.5 py-3.5">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                 Turnaround
               </p>
-              <p className="mt-1 text-lg font-semibold text-[var(--color-text-dark)]">
-                24 to 48 hours
+              <p className="mt-1 text-base font-semibold text-[var(--color-text-dark)]">
+                24 to 48 hrs
               </p>
             </div>
-            <div className="surface rounded-2xl px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
-                Style
+            <div className="surface rounded-2xl px-3.5 py-3.5">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+                Baking
               </p>
-              <p className="mt-1 text-lg font-semibold text-[var(--color-text-dark)]">
-                Clean, elegant, eggless
+              <p className="mt-1 text-base font-semibold text-[var(--color-text-dark)]">
+                100% Eggless
               </p>
             </div>
-            <div className="surface rounded-2xl px-4 py-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-[var(--color-text-muted)]">
+            <div className="surface rounded-2xl px-3.5 py-3.5">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+                Experience
+              </p>
+              <p className="mt-1 text-base font-semibold text-[var(--color-text-dark)]">
+                500+ Orders
+              </p>
+            </div>
+            <div className="surface rounded-2xl px-3.5 py-3.5">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
                 Ordering
               </p>
-              <p className="mt-1 text-lg font-semibold text-[var(--color-text-dark)]">
-                WhatsApp coordination
+              <p className="mt-1 text-base font-semibold text-[var(--color-text-dark)]">
+                WhatsApp Chat
               </p>
             </div>
           </div>

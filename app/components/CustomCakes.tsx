@@ -54,10 +54,21 @@ export default function CustomCakes({
           <h2 className="balance text-3xl font-semibold leading-tight text-[var(--color-text-dark)] md:text-5xl">
             Custom cakes for birthdays, anniversaries, and the events in between
           </h2>
+
+          {/* Occasion chips for semantic search & buyer inspiration */}
+          <div className="mt-4 flex flex-wrap gap-2">
+            {["🎂 Birthday Cakes", "💍 Anniversary Cakes", "👶 Baby Shower", "🎁 Festive & Gift Boxes", "🎉 Milestone Parties"].map((occasion) => (
+              <span
+                key={occasion}
+                className="rounded-full border border-[var(--color-card-border)] bg-white/70 px-3 py-1 text-xs font-medium text-[var(--color-text-dark)] shadow-sm backdrop-blur-sm"
+              >
+                {occasion}
+              </span>
+            ))}
+          </div>
+
           <p className="pretty mt-6 max-w-xl text-base leading-relaxed text-[var(--color-text-muted)]">
-            Share the theme, flavor, and size. We turn that into a cake that
-            fits the table instead of trying to overpower it. The result should
-            look deliberate, travel well, and taste fresh.
+            Share the theme, flavor, and size for your Bikaner celebration. We turn that into an eggless cake that fits the table instead of trying to overpower it. The result looks deliberate, travels safely, and tastes fresh.
           </p>
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
