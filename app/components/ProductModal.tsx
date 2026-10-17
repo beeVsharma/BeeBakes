@@ -19,7 +19,9 @@ type Props = {
 export default function ProductModal({ product, isOpen, onClose }: Props) {
   // Ref for focus restoration when modal closes
   const triggerRef = useRef<HTMLElement | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 640 : false,
+  );
 
   useEffect(() => {
     const updateMobile = () => setIsMobile(window.innerWidth < 640);

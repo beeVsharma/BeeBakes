@@ -42,7 +42,9 @@ export default function CustomOrderModal({
   const [isPending, startTransition] = useTransition();
 
   const triggerRef = useRef<HTMLElement | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 640 : false,
+  );
 
   useEffect(() => {
     const updateMobile = () => setIsMobile(window.innerWidth < 640);
