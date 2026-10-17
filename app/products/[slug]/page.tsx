@@ -69,10 +69,6 @@ export default async function ProductPage({ params }: Props) {
 
   return (
     <main className="px-4 py-24">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <div className="mx-auto max-w-5xl">
         <Link
           href="/#products"
