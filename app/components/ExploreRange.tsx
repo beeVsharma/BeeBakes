@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import type { Product, Category } from "@/lib/products";
 import { categories, allProducts } from "@/lib/products";
@@ -12,6 +12,7 @@ type Props = {
 };
 
 export default function ExploreRange({ onSelectProduct }: Props) {
+  const shouldReduceMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState<Category>("All Items");
 
   const visibleProducts =
@@ -27,10 +28,10 @@ export default function ExploreRange({ onSelectProduct }: Props) {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="mb-3 text-lg md:text-xl font-bold tracking-[0.24em] uppercase text-[var(--color-gold)] italic">
+            <p className="mb-3 text-base md:text-lg font-semibold tracking-[0.1em] uppercase text-[var(--color-gold)]">
               Curated range
             </p>
-            <h2 className="balance max-w-xl text-4xl font-semibold leading-[0.96] text-[var(--color-text-dark)] md:text-5xl">
+            <h2 className="balance max-w-xl text-4xl font-semibold leading-[0.96] tracking-[-0.02em] text-[var(--color-text-dark)] md:text-5xl">
               Explore a focused range that still feels complete
             </h2>
           </div>
@@ -56,10 +57,10 @@ export default function ExploreRange({ onSelectProduct }: Props) {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActiveTab(tab)}
-                className={`relative shrink-0 rounded-full px-4 py-2.5 text-sm font-medium ${
+                className={`relative shrink-0 inline-flex min-h-[44px] items-center rounded-full px-5 py-2.5 text-sm font-medium transition-all active:scale-[0.96] ${
                   isActive
-                    ? "bg-[var(--color-text-dark)] text-white"
-                    : "bg-white/75 text-[var(--color-text-muted)] hover:text-[var(--color-text-dark)]"
+                    ? "bg-[var(--color-text-dark)] text-white shadow-sm"
+                    : "bg-white/80 text-[var(--color-text-muted)] hover:text-[var(--color-text-dark)] shadow-xs"
                 }`}
               >
                 {tab}
@@ -85,12 +86,26 @@ export default function ExploreRange({ onSelectProduct }: Props) {
           {visibleProducts.map((product, idx) => (
             <motion.article
               key={product.title}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 }}
+              whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: idx * 0.05, duration: 0.45 }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 35,
+                delay: shouldReduceMotion ? 0 : Math.min(idx * 0.04, 0.24),
+              }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => onSelectProduct(product)}
-              className={`surface group flex flex-col justify-between overflow-hidden rounded-[1.6rem] cursor-pointer hover:shadow-[0_12px_24px_rgba(73,45,20,0.06)] transition-all duration-300 ${
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelectProduct(product);
+                }
+              }}
+              className={`surface group interactive-card flex flex-col justify-between overflow-hidden rounded-[1.6rem] cursor-pointer hover:shadow-[0_12px_24px_rgba(73,45,20,0.06)] transition-all duration-300 ${
                 activeTab === "All Items" && idx === 0 ? "md:col-span-2" : ""
               }`}
             >

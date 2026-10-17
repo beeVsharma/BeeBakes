@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Image from "next/image";
@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 interface SplashScreenProps {
   isVisible: boolean;
+  onDismiss?: () => void;
 }
 
 const PARTICLES = Array.from({ length: 20 }, (_, i) => {
@@ -25,7 +26,7 @@ const PARTICLES = Array.from({ length: 20 }, (_, i) => {
   };
 });
 
-export default function SplashScreen({ isVisible }: SplashScreenProps) {
+export default function SplashScreen({ isVisible, onDismiss }: SplashScreenProps) {
   const circumference = 2 * Math.PI * 62;
   const [ringComplete, setRingComplete] = useState(false);
   const logoControls = useAnimation();
@@ -38,13 +39,13 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
       ringControls.start({
         scale: 0,
         opacity: 0,
-        transition: { duration: 0.38, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
       });
       await logoControls.start({
-        scale: [1, 1.2, 0.92, 1.08, 1],
-        transition: { duration: 0.55, ease: "easeOut" },
+        scale: [1, 1.12, 1],
+        transition: { duration: 0.35, ease: "easeOut" },
       });
-    }, 5000);
+    }, 1100);
     return () => clearTimeout(timer);
   }, [isVisible, logoControls, ringControls]);
 
@@ -54,11 +55,25 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
         <motion.div
           key="splash"
           initial={{ opacity: 1 }}
-          exit={{ opacity: 0, scale: 1.04 }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[9999] flex h-screen w-screen flex-col items-center justify-center overflow-hidden"
+          exit={{ opacity: 0, scale: 1.02 }}
+          transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          className="fixed inset-0 z-[9999] flex h-screen w-screen flex-col items-center justify-center overflow-hidden cursor-pointer"
           style={{ backgroundColor: "#fbf7f1" }}
+          onClick={onDismiss}
         >
+          {onDismiss && (
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onDismiss();
+              }}
+              className="absolute right-5 top-5 z-20 flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-[var(--color-card-border)] bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-[var(--color-text-dark)] shadow-sm backdrop-blur-md transition-all active:scale-[0.97]"
+              aria-label="Skip splash screen"
+            >
+              Skip
+            </button>
+          )}
           {/* ── Rich background layer ── */}
 
           {/* Top-left large warm glow */}
@@ -205,7 +220,7 @@ export default function SplashScreen({ isVisible }: SplashScreenProps) {
                 strokeDasharray={circumference}
                 initial={{ strokeDashoffset: circumference }}
                 animate={{ strokeDashoffset: 0 }}
-                transition={{ duration: 5.0, ease: "easeInOut" }}
+                transition={{ duration: 1.05, ease: "easeInOut" }}
                 style={{ transformOrigin: "68px 68px", rotate: "-90deg" }}
               />
             </motion.svg>

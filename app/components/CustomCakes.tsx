@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Check } from "lucide-react";
 import Image from "next/image";
 
@@ -9,17 +9,19 @@ export default function CustomCakes({
 }: {
   onOpenCustomOrder: () => void;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section
       id="custom-cakes"
-      className="scroll-mt-0 px-4 py-20 md:scroll-mt-0 md:py-24"
+      className="scroll-mt-28 px-4 py-20 md:scroll-mt-32 md:py-24"
     >
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16">
         <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: -30 }}
+          whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ type: "spring", stiffness: 300, damping: 35 }}
           className="relative"
         >
           <div className="absolute -left-8 top-12 h-44 w-44 rounded-full bg-[var(--color-gold)]/10 blur-3xl" />
@@ -35,23 +37,23 @@ export default function CustomCakes({
               />
             </div>
 
-            <div className="absolute right-6 top-6 rounded-full bg-[var(--color-text-dark)] px-4 py-2 text-xs font-medium uppercase tracking-[0.18em] text-white">
+            <div className="absolute right-6 top-6 rounded-full bg-[var(--color-text-dark)] px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-white">
               Custom made
             </div>
           </div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, x: 30 }}
+          whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.8 }}
+          transition={{ type: "spring", stiffness: 300, damping: 35 }}
           className="max-w-2xl"
         >
-          <p className="mb-4 text-lg md:text-xl font-bold tracking-[0.24em] uppercase text-[var(--color-gold)] italic">
+          <p className="mb-4 text-base md:text-lg font-semibold tracking-[0.1em] uppercase text-[var(--color-gold)]">
             Made just for you
           </p>
-          <h2 className="balance text-3xl font-semibold leading-tight text-[var(--color-text-dark)] md:text-5xl">
+          <h2 className="balance text-3xl font-semibold leading-tight tracking-[-0.02em] text-[var(--color-text-dark)] md:text-5xl">
             Custom cakes for birthdays, anniversaries, and the events in between
           </h2>
 
@@ -60,7 +62,7 @@ export default function CustomCakes({
             {["🎂 Birthday Cakes", "💍 Anniversary Cakes", "👶 Baby Shower", "🎁 Festive & Gift Boxes", "🎉 Milestone Parties"].map((occasion) => (
               <span
                 key={occasion}
-                className="rounded-full border border-[var(--color-card-border)] bg-white/70 px-3 py-1 text-xs font-medium text-[var(--color-text-dark)] shadow-sm backdrop-blur-sm"
+                className="rounded-full border border-[var(--color-card-border)] bg-white/75 px-3 py-1.5 text-xs font-medium text-[var(--color-text-dark)] shadow-sm backdrop-blur-sm transition-all active:scale-[0.96]"
               >
                 {occasion}
               </span>
@@ -132,7 +134,7 @@ export default function CustomCakes({
           <button
             type="button"
             onClick={onOpenCustomOrder}
-            className="mt-10 inline-flex items-center justify-center rounded-full bg-[var(--color-text-dark)] px-7 py-3.5 text-sm font-medium text-white shadow-[0_14px_36px_rgba(47,34,27,0.18)] hover:-translate-y-0.5 hover:bg-[var(--color-gold)]"
+            className="mt-10 inline-flex min-h-[44px] items-center justify-center rounded-full bg-[var(--color-text-dark)] px-7 py-3 text-sm font-medium text-white shadow-[0_14px_36px_rgba(47,34,27,0.18)] transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 hover:bg-[var(--color-gold)]"
           >
             Design your cake
           </button>

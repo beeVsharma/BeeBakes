@@ -2,7 +2,7 @@
 
 import { memo, useState } from "react";
 import type { KeyboardEvent } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Cake, EggOff } from "lucide-react";
 import Image from "next/image";
 
@@ -25,6 +25,7 @@ const ProductCard = memo(function ProductCard({
 }: Props) {
   const [imgError, setImgError] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
     if (!onClick) return;
@@ -36,18 +37,24 @@ const ProductCard = memo(function ProductCard({
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 24 }}
+      whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.55, delay, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`group h-full ${onClick ? "cursor-pointer" : ""}`}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 34,
+        delay: shouldReduceMotion ? 0 : delay,
+      }}
+      whileTap={onClick ? { scale: 0.97 } : undefined}
+      className={`group h-full select-none interactive-card ${onClick ? "cursor-pointer" : ""}`}
       onClick={onClick}
       onKeyDown={handleKeyDown}
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
       aria-label={onClick ? `View details for ${title}` : undefined}
     >
-      <div className="surface flex h-full flex-col overflow-hidden rounded-[1.75rem]">
+      <div className="surface flex h-full flex-col overflow-hidden rounded-[1.75rem] transition-shadow duration-300 group-hover:shadow-[0_20px_50px_rgba(73,45,20,0.14)]">
         <div className="relative aspect-[4/3] overflow-hidden bg-[var(--color-bg-secondary)]">
           <div className="absolute left-4 top-4 z-20 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--color-text-dark)] shadow-[0_10px_24px_rgba(73,45,20,0.08)]">
             <EggOff

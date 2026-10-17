@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ShoppingCart, Clock, ExternalLink } from "lucide-react";
 import Image from "next/image";
@@ -19,6 +19,16 @@ type Props = {
 export default function ProductModal({ product, isOpen, onClose }: Props) {
   // Ref for focus restoration when modal closes
   const triggerRef = useRef<HTMLElement | null>(null);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 640 : false,
+  );
+
+  useEffect(() => {
+    const updateMobile = () => setIsMobile(window.innerWidth < 640);
+    updateMobile();
+    window.addEventListener("resize", updateMobile, { passive: true });
+    return () => window.removeEventListener("resize", updateMobile);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -56,7 +66,7 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
           />
 
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4"
             role="presentation"
           >
             <FocusTrap active={isOpen} returnFocusRef={triggerRef}>
@@ -65,17 +75,50 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                 aria-modal="true"
                 aria-labelledby="product-modal-title"
                 aria-describedby="product-modal-description"
-                initial={{ opacity: 0, scale: 0.96, y: 18 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: 18 }}
-                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                className="surface relative max-h-[92vh] w-full max-w-3xl overflow-y-auto hide-scrollbar rounded-[1.5rem] md:rounded-[2rem]"
+                drag={isMobile ? "y" : false}
+                dragConstraints={{ top: 0, bottom: 0 }}
+                dragElastic={{ top: 0.55, bottom: 0.55 }}
+                dragSnapToOrigin={true}
+                onDragEnd={(_, info) => {
+                  if (info.offset.y > 60 || info.velocity.y > 250) {
+                    onClose();
+                  }
+                }}
+                initial={
+                  isMobile
+                    ? { y: "100%", opacity: 0.8 }
+                    : { opacity: 0, scale: 0.96, y: 16 }
+                }
+                animate={
+                  isMobile
+                    ? { y: 0, opacity: 1 }
+                    : { opacity: 1, scale: 1, y: 0 }
+                }
+                exit={
+                  isMobile
+                    ? { y: "100%", opacity: 0.5 }
+                    : { opacity: 0, scale: 0.96, y: 16 }
+                }
+                transition={{
+                  type: "spring",
+                  stiffness: 440,
+                  damping: 33.5,
+                }}
+                className="surface relative max-h-[88vh] sm:max-h-[92vh] w-full max-w-3xl overflow-y-auto hide-scrollbar rounded-t-[2rem] sm:rounded-[2rem] border-t border-white/70 shadow-[0_24px_60px_rgba(73,45,20,0.2)]"
                 onClick={(event) => event.stopPropagation()}
               >
+                {/* Mobile drag-down pull pill */}
+                <div
+                  className="flex sm:hidden w-full items-center justify-center pt-3 pb-3 touch-none select-none"
+                  aria-hidden="true"
+                >
+                  <div className="h-1.5 w-12 rounded-full bg-[var(--color-card-border)]/80" />
+                </div>
+
                 <button
                   type="button"
                   onClick={onClose}
-                  className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[var(--color-text-dark)] shadow-[0_12px_28px_rgba(73,45,20,0.12)] transition-transform duration-300 hover:scale-105 hover:bg-white md:right-4 md:top-4 md:h-10 md:w-10"
+                  className="absolute right-3.5 top-3.5 z-10 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-white/90 text-[var(--color-text-dark)] shadow-[0_12px_28px_rgba(73,45,20,0.12)] transition-all active:scale-[0.96] hover:bg-white md:right-4 md:top-4"
                   aria-label="Close product details"
                 >
                   <X className="h-5 w-5" aria-hidden="true" />
@@ -88,7 +131,8 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                       alt={product.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 40vw"
-                      className="object-cover"
+                      className="object-cover pointer-events-none select-none"
+                      draggable={false}
                       loading="lazy"
                     />
                   </div>
@@ -155,7 +199,7 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                       href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Bee%20Bakes%2C%20I%20would%20like%20to%20order%20${encodeURIComponent(product.title)}.`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-text-dark)] px-5 py-3.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--color-gold)]"
+                      className="mt-7 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full bg-[var(--color-text-dark)] px-5 py-3 text-sm font-medium text-white shadow-sm transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 hover:bg-[var(--color-gold)]"
                     >
                       <ShoppingCart className="h-5 w-5" aria-hidden="true" />
                       Continue on WhatsApp
@@ -165,7 +209,7 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                     <Link
                       href={`/products/${slugify(product.title)}`}
                       onClick={onClose}
-                      className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-[var(--color-card-border)] bg-white px-5 py-3 text-sm font-medium text-[var(--color-text-dark)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+                      className="mt-3 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-full border border-[var(--color-card-border)] bg-white px-5 py-3 text-sm font-medium text-[var(--color-text-dark)] shadow-sm transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
                     >
                       <ExternalLink className="h-4 w-4" aria-hidden="true" />
                       View full product page

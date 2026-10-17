@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useSyncExternalStore } from "react";
 import { Camera, Mail, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
 import Navbar from "./components/Navbar";
@@ -26,11 +26,53 @@ import {
   BUSINESS_EMAIL,
 } from "@/lib/constants";
 
+let splashListeners: Array<() => void> = [];
+const splashStore = {
+  subscribe(listener: () => void) {
+    splashListeners.push(listener);
+    return () => {
+      splashListeners = splashListeners.filter((l) => l !== listener);
+    };
+  },
+  getSnapshot() {
+    if (typeof window === "undefined") return false;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return false;
+    }
+    try {
+      return !sessionStorage.getItem("beebakes_splash_shown");
+    } catch {
+      return false;
+    }
+  },
+  dismiss() {
+    try {
+      sessionStorage.setItem("beebakes_splash_shown", "1");
+    } catch {
+      // ignore storage errors
+    }
+    splashListeners.forEach((l) => l());
+  },
+};
+
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isCustomOrderOpen, setIsCustomOrderOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const showSplash = useSyncExternalStore(
+    splashStore.subscribe,
+    splashStore.getSnapshot,
+    () => false,
+  );
+  const [splashDismissed, setSplashDismissed] = useState(false);
+  const isSplashActive = showSplash && !splashDismissed;
+
+  const dismissSplash = () => {
+    splashStore.dismiss();
+    setSplashDismissed(true);
+    document.body.style.overflow = "";
+  };
 
   const handleEmailClick = () => {
     const email = BUSINESS_EMAIL;
@@ -55,34 +97,34 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Lock scroll and reset position so splash is always centred in viewport
+    if (!isSplashActive) return;
+
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
 
     const timer = setTimeout(() => {
-      setIsLoading(false);
-      document.body.style.overflow = "";
-    }, 5000);
+      dismissSplash();
+    }, 1200);
 
     return () => {
       clearTimeout(timer);
       document.body.style.overflow = "";
     };
-  }, []);
+  }, [isSplashActive]);
 
   return (
     <>
-      <SplashScreen isVisible={isLoading} />
+      <SplashScreen isVisible={isSplashActive} onDismiss={dismissSplash} />
       <div
         className="transition-opacity duration-700"
         style={{
-          opacity: isLoading ? 0 : 1,
-          pointerEvents: isLoading ? "none" : "auto",
+          opacity: isSplashActive ? 0 : 1,
+          pointerEvents: isSplashActive ? "none" : "auto",
         }}
       >
         <main
           id="content"
-          className="relative min-h-screen overflow-hidden bg-[var(--color-bg-light)]"
+          className="relative min-h-screen overflow-x-clip bg-[var(--color-bg-light)]"
         >
           <Navbar onOpenCustomOrder={() => setIsCustomOrderOpen(true)} />
 
@@ -94,7 +136,7 @@ export default function Home() {
 
           <AnimatedSection
             id="products"
-            className="scroll-mt-0 py-20 px-4 md:scroll-mt-0 md:py-24"
+            className="scroll-mt-28 py-20 px-4 md:scroll-mt-32 md:py-24"
           >
             <div className="mx-auto max-w-7xl">
               <div className="mb-14 grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
@@ -198,7 +240,7 @@ export default function Home() {
 
           <AnimatedSection
             id="testimonials"
-            className="scroll-mt-0 py-20 px-4 md:scroll-mt-0 md:py-24"
+            className="scroll-mt-28 py-20 px-4 md:scroll-mt-32 md:py-24"
           >
             <div className="mx-auto max-w-7xl">
               <div className="mb-14 grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
@@ -361,7 +403,7 @@ export default function Home() {
 
           <footer
             id="footer"
-            className="border-t border-[var(--color-card-border)] px-4 py-14 md:py-16"
+            className="border-t border-[var(--color-card-border)] px-4 pt-14 pb-28 md:py-16"
           >
             <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.2fr_.9fr_.9fr_.8fr] lg:gap-12">
               <div>

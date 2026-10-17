@@ -86,54 +86,57 @@ export default function Navbar({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
-
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-    hamburgerRef.current?.focus();
-  };
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    id: string,
+    href: string,
   ) => {
     e.preventDefault();
-    closeMobileMenu();
-    // scroll after menu-close animation + body scroll-lock cleared
-    setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }, 300);
+    setMobileMenuOpen(false);
+
+    if (href.startsWith("#")) {
+      const targetId = href.slice(1);
+      if (targetId === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.history.pushState(null, "", href);
+        return;
+      }
+
+      const element = document.getElementById(targetId);
+      if (element) {
+        const navbarHeight = 76;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: "smooth",
+        });
+        window.history.pushState(null, "", href);
+      }
+    }
   };
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.75, ease: "easeOut" }}
+      transition={{ type: "spring", stiffness: 320, damping: 32 }}
       className={`fixed inset-x-0 top-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? "border-[var(--color-card-border)] bg-[rgba(251,247,241,0.88)] py-2.5 shadow-[0_12px_40px_rgba(73,45,20,0.08)] backdrop-blur-xl md:py-3"
+          ? "apple-glass py-2.5 shadow-[0_12px_40px_rgba(73,45,20,0.08)] md:py-3"
           : "border-transparent bg-transparent py-4 md:py-5"
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-8">
         <a
           href="#home"
-          className="group flex items-center gap-3"
+          onClick={(e) => handleNavClick(e, "#home")}
+          className="group flex min-h-[44px] items-center gap-3 active:scale-[0.98]"
           aria-label="Bee Bakes by Vartika — Home"
         >
           <div
-            className="relative h-10 w-10 overflow-hidden rounded-full md:h-12 md:w-12"
+            className="relative h-10 w-10 overflow-hidden rounded-full shadow-sm md:h-12 md:w-12"
             aria-hidden="true"
           >
             <Image
@@ -149,7 +152,7 @@ export default function Navbar({
             <span className="block text-lg font-semibold tracking-tight text-[var(--color-text-dark)] md:text-2xl">
               Bee Bakes
             </span>
-            <span className="block text-[0.72rem] italic text-[var(--color-gold)] md:text-sm">
+            <span className="block text-[0.72rem] text-[var(--color-gold)] font-medium md:text-sm">
               by Vartika
             </span>
           </span>
@@ -166,8 +169,9 @@ export default function Navbar({
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 aria-current={isActive ? "page" : undefined}
-                className={`rounded-full px-4 py-2 text-sm font-medium tracking-wide ${
+                className={`inline-flex min-h-[44px] items-center rounded-full px-4 py-2 text-sm font-medium tracking-wide transition-all active:scale-[0.96] ${
                   isActive
                     ? "bg-[var(--color-gold)]/10 text-[var(--color-gold)]"
                     : "text-[var(--color-text-dark)] hover:bg-white/80 hover:text-[var(--color-gold)]"
@@ -180,7 +184,7 @@ export default function Navbar({
           <button
             type="button"
             onClick={onOpenCustomOrder}
-            className="ml-2 rounded-full bg-[var(--color-text-dark)] px-5 py-2.5 text-sm font-medium text-white shadow-[0_10px_30px_rgba(47,34,27,0.18)] hover:-translate-y-0.5 hover:bg-[var(--color-gold)]"
+            className="ml-2 inline-flex min-h-[44px] items-center justify-center rounded-full bg-[var(--color-text-dark)] px-6 py-2.5 text-sm font-medium text-white shadow-[0_10px_30px_rgba(47,34,27,0.18)] transition-all active:scale-[0.96] hover:-translate-y-0.5 hover:bg-[var(--color-gold)]"
           >
             Order now
           </button>
@@ -189,7 +193,7 @@ export default function Navbar({
         <button
           ref={hamburgerRef}
           type="button"
-          className="inline-flex items-center justify-center rounded-full border border-[var(--color-card-border)] bg-white/70 p-2 text-[var(--color-text-dark)] md:hidden"
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full border border-[var(--color-card-border)] bg-white/80 p-2 text-[var(--color-text-dark)] shadow-sm active:scale-[0.96] md:hidden"
           onClick={() => setMobileMenuOpen((value) => !value)}
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
@@ -211,9 +215,10 @@ export default function Navbar({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="border-t border-[var(--color-card-border)] bg-[rgba(251,247,241,0.98)] backdrop-blur-xl md:hidden"
+            transition={{ type: "spring", stiffness: 350, damping: 35 }}
+            className="border-t border-[var(--color-card-border)] bg-[rgba(251,247,241,0.98)] backdrop-blur-2xl md:hidden"
           >
-            <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 py-4">
+            <div className="mx-auto flex max-w-7xl flex-col gap-2 px-4 py-4">
               {navLinks.map((link) => {
                 const isActive = activeSection === link.id;
 
@@ -221,8 +226,8 @@ export default function Navbar({
                   <a
                     key={link.name}
                     href={link.href}
-                    onClick={(e) => handleNavClick(e, link.id)}
-                    className={`rounded-2xl px-4 py-3 text-base font-medium ${
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className={`flex min-h-[44px] items-center rounded-2xl px-4 py-3 text-base font-medium transition-all active:scale-[0.98] ${
                       isActive
                         ? "bg-[var(--color-gold)]/10 text-[var(--color-gold)]"
                         : "text-[var(--color-text-dark)] hover:bg-white/80 hover:text-[var(--color-gold)]"
@@ -236,10 +241,10 @@ export default function Navbar({
               <button
                 type="button"
                 onClick={() => {
-                  closeMobileMenu();
+                  setMobileMenuOpen(false);
                   onOpenCustomOrder();
                 }}
-                className="mt-2 rounded-2xl bg-[var(--color-text-dark)] px-4 py-3 text-left text-base font-medium text-white hover:bg-[var(--color-gold)]"
+                className="mt-2 flex min-h-[44px] items-center justify-center rounded-2xl bg-[var(--color-text-dark)] px-4 py-3 text-center text-base font-medium text-white shadow-md active:scale-[0.98] hover:bg-[var(--color-gold)]"
               >
                 Start a custom order
               </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { BadgeCheck, Clock3, Sparkles, Truck } from "lucide-react";
 
 const features = [
@@ -30,14 +30,16 @@ const features = [
 ];
 
 export default function FeaturesBar() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="border-y border-[var(--color-card-border)] bg-[rgba(255,255,255,0.42)] px-4 py-8 md:py-10">
       <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center">
         <div>
-          <p className="mb-3 text-lg md:text-xl font-bold tracking-[0.24em] uppercase text-[var(--color-gold)] italic">
+          <p className="mb-3 text-base md:text-lg font-semibold tracking-[0.1em] uppercase text-[var(--color-gold)]">
             Why it feels different
           </p>
-          <h2 className="balance max-w-md text-3xl font-semibold text-[var(--color-text-dark)] md:text-4xl">
+          <h2 className="balance max-w-md text-3xl font-semibold tracking-[-0.02em] text-[var(--color-text-dark)] md:text-4xl">
             A quieter bakery workflow, presented with more care
           </h2>
           <p className="pretty mt-4 max-w-md text-sm leading-relaxed text-[var(--color-text-muted)]">
@@ -54,11 +56,16 @@ export default function FeaturesBar() {
             return (
               <motion.div
                 key={feature.title}
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ delay: idx * 0.08, duration: 0.45 }}
-                className="surface rounded-[1.5rem] p-5 shadow-[0_18px_45px_rgba(73,45,20,0.08)]"
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+                whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 34,
+                  delay: shouldReduceMotion ? 0 : idx * 0.08,
+                }}
+                className="surface rounded-[1.5rem] p-5 shadow-[0_18px_45px_rgba(73,45,20,0.08)] transition-all duration-200 active:scale-[0.98]"
               >
                 <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-[var(--color-gold)]/10 text-[var(--color-gold)]">
                   <Icon className="h-5 w-5" aria-hidden="true" />
