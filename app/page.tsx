@@ -124,7 +124,7 @@ export default function Home() {
       >
         <main
           id="content"
-          className="relative min-h-screen overflow-hidden bg-[var(--color-bg-light)]"
+          className="relative min-h-screen overflow-x-clip bg-[var(--color-bg-light)]"
         >
           <Navbar onOpenCustomOrder={() => setIsCustomOrderOpen(true)} />
 
@@ -136,7 +136,7 @@ export default function Home() {
 
           <AnimatedSection
             id="products"
-            className="scroll-mt-0 py-20 px-4 md:scroll-mt-0 md:py-24"
+            className="scroll-mt-28 py-20 px-4 md:scroll-mt-32 md:py-24"
           >
             <div className="mx-auto max-w-7xl">
               <div className="mb-14 grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">
@@ -240,7 +240,7 @@ export default function Home() {
 
           <AnimatedSection
             id="testimonials"
-            className="scroll-mt-0 py-20 px-4 md:scroll-mt-0 md:py-24"
+            className="scroll-mt-28 py-20 px-4 md:scroll-mt-32 md:py-24"
           >
             <div className="mx-auto max-w-7xl">
               <div className="mb-14 grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-end">

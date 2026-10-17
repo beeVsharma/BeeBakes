@@ -127,7 +127,7 @@ test.describe("Apple Design Mobile Verification (375px viewport)", () => {
 
     // Start near the top pull pill
     const startX = box.x + box.width / 2;
-    const startY = box.y + 25;
+    const startY = box.y + 12;
 
     // Drag down 160px (threshold is 90px in onDragEnd)
     await page.mouse.move(startX, startY);

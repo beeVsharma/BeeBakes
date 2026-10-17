@@ -14,7 +14,7 @@ export default function CustomCakes({
   return (
     <section
       id="custom-cakes"
-      className="scroll-mt-0 px-4 py-20 md:scroll-mt-0 md:py-24"
+      className="scroll-mt-28 px-4 py-20 md:scroll-mt-32 md:py-24"
     >
       <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:gap-16">
         <motion.div

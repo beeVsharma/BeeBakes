@@ -4,6 +4,21 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Hero() {
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const navbarHeight = 76;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+      window.scrollTo({
+        top: Math.max(0, offsetPosition),
+        behavior: "smooth",
+      });
+      window.history.pushState(null, "", `#${id}`);
+    }
+  };
+
   return (
     <section className="relative overflow-hidden bg-[var(--color-bg-light)] pt-24 pb-12 md:pt-28 md:pb-16">
       <div className="absolute inset-x-0 top-0 h-[42rem] bg-[radial-gradient(circle_at_top_left,rgba(159,102,54,0.18),transparent_28%),radial-gradient(circle_at_top_right,rgba(239,227,215,0.7),transparent_26%)]" />
@@ -55,12 +70,14 @@ export default function Hero() {
           >
             <a
               href="#products"
+              onClick={(e) => handleScrollTo(e, "products")}
               className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[var(--color-text-dark)] px-7 py-3 text-sm font-medium text-white shadow-[0_14px_36px_rgba(47,34,27,0.18)] transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:shadow-[0_18px_42px_rgba(159,102,54,0.24)]"
             >
               Browse the collection
             </a>
             <a
               href="#custom-cakes"
+              onClick={(e) => handleScrollTo(e, "custom-cakes")}
               className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[var(--color-card-border)] bg-white/80 px-7 py-3 text-sm font-medium text-[var(--color-text-dark)] shadow-sm transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] hover:shadow-[0_16px_34px_rgba(73,45,20,0.08)]"
             >
               Start a custom order

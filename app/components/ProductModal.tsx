@@ -80,7 +80,7 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                 dragElastic={{ top: 0.55, bottom: 0.55 }}
                 dragSnapToOrigin={true}
                 onDragEnd={(_, info) => {
-                  if (info.offset.y > 90 || info.velocity.y > 400) {
+                  if (info.offset.y > 60 || info.velocity.y > 250) {
                     onClose();
                   }
                 }}
@@ -109,7 +109,7 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
               >
                 {/* Mobile drag-down pull pill */}
                 <div
-                  className="flex sm:hidden w-full items-center justify-center pt-3 pb-1.5 touch-none"
+                  className="flex sm:hidden w-full items-center justify-center pt-3 pb-3 touch-none select-none"
                   aria-hidden="true"
                 >
                   <div className="h-1.5 w-12 rounded-full bg-[var(--color-card-border)]/80" />
@@ -131,7 +131,8 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                       alt={product.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 40vw"
-                      className="object-cover"
+                      className="object-cover pointer-events-none select-none"
+                      draggable={false}
                       loading="lazy"
                     />
                   </div>

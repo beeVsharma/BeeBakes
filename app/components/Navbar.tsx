@@ -86,31 +86,35 @@ export default function Navbar({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [mobileMenuOpen]);
 
-  // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
-
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-    hamburgerRef.current?.focus();
-  };
 
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    id: string,
+    href: string,
   ) => {
     e.preventDefault();
-    closeMobileMenu();
-    // Scroll directly without artificial delay
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setMobileMenuOpen(false);
+
+    if (href.startsWith("#")) {
+      const targetId = href.slice(1);
+      if (targetId === "home") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        window.history.pushState(null, "", href);
+        return;
+      }
+
+      const element = document.getElementById(targetId);
+      if (element) {
+        const navbarHeight = 76;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - navbarHeight;
+
+        window.scrollTo({
+          top: Math.max(0, offsetPosition),
+          behavior: "smooth",
+        });
+        window.history.pushState(null, "", href);
+      }
+    }
   };
 
   return (
@@ -127,6 +131,7 @@ export default function Navbar({
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 md:px-8">
         <a
           href="#home"
+          onClick={(e) => handleNavClick(e, "#home")}
           className="group flex min-h-[44px] items-center gap-3 active:scale-[0.98]"
           aria-label="Bee Bakes by Vartika — Home"
         >
@@ -164,6 +169,7 @@ export default function Navbar({
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 aria-current={isActive ? "page" : undefined}
                 className={`inline-flex min-h-[44px] items-center rounded-full px-4 py-2 text-sm font-medium tracking-wide transition-all active:scale-[0.96] ${
                   isActive
@@ -220,7 +226,7 @@ export default function Navbar({
                   <a
                     key={link.name}
                     href={link.href}
-                    onClick={(e) => handleNavClick(e, link.id)}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className={`flex min-h-[44px] items-center rounded-2xl px-4 py-3 text-base font-medium transition-all active:scale-[0.98] ${
                       isActive
                         ? "bg-[var(--color-gold)]/10 text-[var(--color-gold)]"
@@ -235,7 +241,7 @@ export default function Navbar({
               <button
                 type="button"
                 onClick={() => {
-                  closeMobileMenu();
+                  setMobileMenuOpen(false);
                   onOpenCustomOrder();
                 }}
                 className="mt-2 flex min-h-[44px] items-center justify-center rounded-2xl bg-[var(--color-text-dark)] px-4 py-3 text-center text-base font-medium text-white shadow-md active:scale-[0.98] hover:bg-[var(--color-gold)]"

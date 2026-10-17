@@ -103,8 +103,8 @@ export default function CustomOrderModal({
         "noopener,noreferrer",
       );
       if (!popup) {
-        setSubmitError("WhatsApp popup blocked. Allow popups and try again.");
-        return;
+        // Mobile fallback when browser blocks async window.open
+        window.location.href = result.whatsappUrl;
       }
 
       setSubmitError("");
@@ -157,7 +157,7 @@ export default function CustomOrderModal({
                 dragElastic={{ top: 0.55, bottom: 0.55 }}
                 dragSnapToOrigin={true}
                 onDragEnd={(_, info) => {
-                  if (info.offset.y > 90 || info.velocity.y > 400) {
+                  if (info.offset.y > 60 || info.velocity.y > 250) {
                     handleClose();
                   }
                 }}
