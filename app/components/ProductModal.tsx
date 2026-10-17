@@ -75,7 +75,7 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                 aria-describedby="product-modal-description"
                 drag={isMobile ? "y" : false}
                 dragConstraints={{ top: 0, bottom: 0 }}
-                dragElastic={{ top: 0.05, bottom: 0.55 }}
+                dragElastic={{ top: 0.55, bottom: 0.55 }}
                 dragSnapToOrigin={true}
                 onDragEnd={(_, info) => {
                   if (info.offset.y > 90 || info.velocity.y > 400) {
@@ -99,8 +99,8 @@ export default function ProductModal({ product, isOpen, onClose }: Props) {
                 }
                 transition={{
                   type: "spring",
-                  stiffness: 340,
-                  damping: 28,
+                  stiffness: 440,
+                  damping: 33.5,
                 }}
                 className="surface relative max-h-[88vh] sm:max-h-[92vh] w-full max-w-3xl overflow-y-auto hide-scrollbar rounded-t-[2rem] sm:rounded-[2rem] border-t border-white/70 shadow-[0_24px_60px_rgba(73,45,20,0.2)]"
                 onClick={(event) => event.stopPropagation()}

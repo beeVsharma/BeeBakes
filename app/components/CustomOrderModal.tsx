@@ -152,7 +152,7 @@ export default function CustomOrderModal({
               <motion.div
                 drag={isMobile ? "y" : false}
                 dragConstraints={{ top: 0, bottom: 0 }}
-                dragElastic={{ top: 0.05, bottom: 0.55 }}
+                dragElastic={{ top: 0.55, bottom: 0.55 }}
                 dragSnapToOrigin={true}
                 onDragEnd={(_, info) => {
                   if (info.offset.y > 90 || info.velocity.y > 400) {
@@ -176,8 +176,8 @@ export default function CustomOrderModal({
                 }
                 transition={{
                   type: "spring",
-                  stiffness: 340,
-                  damping: 28,
+                  stiffness: 440,
+                  damping: 33.5,
                 }}
                 role="dialog"
                 aria-modal="true"

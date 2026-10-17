@@ -94,7 +94,8 @@ a,
 
 button:active,
 a:active,
-[role="button"]:active {
+[role="button"]:active,
+.interactive-card:active {
   transform: scale(0.97);
   transition: transform 100ms cubic-bezier(0.2, 0, 0, 1);
 }

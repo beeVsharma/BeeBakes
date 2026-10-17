@@ -87,7 +87,7 @@ export default function InstagramFeed() {
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full border border-[var(--color-card-border)] bg-white/80 px-6 py-3 text-sm font-medium text-[var(--color-text-dark)] hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+            className="inline-flex min-h-[44px] items-center gap-2 rounded-full border border-[var(--color-card-border)] bg-white/80 px-6 py-3 text-sm font-medium text-[var(--color-text-dark)] transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
           >
             <ExternalLink className="h-4 w-4" aria-hidden="true" />
             View more on Instagram

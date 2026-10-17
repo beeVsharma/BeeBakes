@@ -220,7 +220,7 @@ export default function SplashScreen({ isVisible, onDismiss }: SplashScreenProps
                 strokeDasharray={circumference}
                 initial={{ strokeDashoffset: circumference }}
                 animate={{ strokeDashoffset: 0 }}
-                transition={{ duration: 5.0, ease: "easeInOut" }}
+                transition={{ duration: 1.05, ease: "easeInOut" }}
                 style={{ transformOrigin: "68px 68px", rotate: "-90deg" }}
               />
             </motion.svg>

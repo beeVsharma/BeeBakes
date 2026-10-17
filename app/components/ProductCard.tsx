@@ -46,8 +46,8 @@ const ProductCard = memo(function ProductCard({
         damping: 34,
         delay: shouldReduceMotion ? 0 : delay,
       }}
-      whileTap={onClick ? { scale: 0.98 } : undefined}
-      className={`group h-full select-none ${onClick ? "cursor-pointer" : ""}`}
+      whileTap={onClick ? { scale: 0.97 } : undefined}
+      className={`group h-full select-none interactive-card ${onClick ? "cursor-pointer" : ""}`}
       onClick={onClick}
       onKeyDown={handleKeyDown}
       role={onClick ? "button" : undefined}

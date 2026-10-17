@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import type { Product, Category } from "@/lib/products";
 import { categories, allProducts } from "@/lib/products";
@@ -12,6 +12,7 @@ type Props = {
 };
 
 export default function ExploreRange({ onSelectProduct }: Props) {
+  const shouldReduceMotion = useReducedMotion();
   const [activeTab, setActiveTab] = useState<Category>("All Items");
 
   const visibleProducts =
@@ -85,12 +86,26 @@ export default function ExploreRange({ onSelectProduct }: Props) {
           {visibleProducts.map((product, idx) => (
             <motion.article
               key={product.title}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 }}
+              whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              transition={{ delay: idx * 0.05, duration: 0.45 }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 35,
+                delay: shouldReduceMotion ? 0 : Math.min(idx * 0.04, 0.24),
+              }}
+              whileTap={{ scale: 0.97 }}
               onClick={() => onSelectProduct(product)}
-              className={`surface group flex flex-col justify-between overflow-hidden rounded-[1.6rem] cursor-pointer hover:shadow-[0_12px_24px_rgba(73,45,20,0.06)] transition-all duration-300 ${
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  onSelectProduct(product);
+                }
+              }}
+              className={`surface group interactive-card flex flex-col justify-between overflow-hidden rounded-[1.6rem] cursor-pointer hover:shadow-[0_12px_24px_rgba(73,45,20,0.06)] transition-all duration-300 ${
                 activeTab === "All Items" && idx === 0 ? "md:col-span-2" : ""
               }`}
             >
