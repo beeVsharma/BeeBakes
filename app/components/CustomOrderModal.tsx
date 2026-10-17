@@ -42,6 +42,14 @@ export default function CustomOrderModal({
   const [isPending, startTransition] = useTransition();
 
   const triggerRef = useRef<HTMLElement | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const updateMobile = () => setIsMobile(window.innerWidth < 640);
+    updateMobile();
+    window.addEventListener("resize", updateMobile, { passive: true });
+    return () => window.removeEventListener("resize", updateMobile);
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -137,25 +145,58 @@ export default function CustomOrderModal({
           />
 
           <div
-            className="fixed inset-0 z-[101] flex items-center justify-center p-4"
+            className="fixed inset-0 z-[101] flex items-end sm:items-center justify-center p-0 sm:p-4"
             role="presentation"
           >
             <FocusTrap active={isOpen} returnFocusRef={triggerRef}>
               <motion.div
-                initial={{ opacity: 0, scale: 0.96, y: 18 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                exit={{ opacity: 0, scale: 0.96, y: 18 }}
-                transition={{ duration: 0.25 }}
+                drag={isMobile ? "y" : false}
+                dragConstraints={{ top: 0, bottom: 0 }}
+                dragElastic={{ top: 0.05, bottom: 0.55 }}
+                dragSnapToOrigin={true}
+                onDragEnd={(_, info) => {
+                  if (info.offset.y > 90 || info.velocity.y > 400) {
+                    handleClose();
+                  }
+                }}
+                initial={
+                  isMobile
+                    ? { y: "100%", opacity: 0.8 }
+                    : { opacity: 0, scale: 0.96, y: 16 }
+                }
+                animate={
+                  isMobile
+                    ? { y: 0, opacity: 1 }
+                    : { opacity: 1, scale: 1, y: 0 }
+                }
+                exit={
+                  isMobile
+                    ? { y: "100%", opacity: 0.5 }
+                    : { opacity: 0, scale: 0.96, y: 16 }
+                }
+                transition={{
+                  type: "spring",
+                  stiffness: 340,
+                  damping: 28,
+                }}
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby="custom-order-title"
-                className="surface relative w-full max-w-2xl max-h-[90vh] overflow-y-auto hide-scrollbar rounded-[1.5rem] md:rounded-[2rem]"
+                className="surface relative w-full max-w-2xl max-h-[88vh] sm:max-h-[90vh] overflow-y-auto hide-scrollbar rounded-t-[2rem] sm:rounded-[2rem] border-t border-white/70 shadow-[0_24px_60px_rgba(73,45,20,0.2)]"
               >
+                {/* Mobile drag-down pull pill */}
+                <div
+                  className="flex sm:hidden w-full items-center justify-center pt-3 pb-1.5 touch-none"
+                  aria-hidden="true"
+                >
+                  <div className="h-1.5 w-12 rounded-full bg-[var(--color-card-border)]/80" />
+                </div>
+
                 <button
                   type="button"
                   onClick={handleClose}
                   disabled={isSubmitting}
-                  className="absolute right-3 top-3 z-10 inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-[var(--color-text-dark)] shadow-[0_12px_28px_rgba(73,45,20,0.12)] transition-transform duration-300 hover:scale-105 hover:bg-white md:right-4 md:top-4 md:h-10 md:w-10"
+                  className="absolute right-3.5 top-3.5 z-10 inline-flex min-h-[44px] min-w-[44px] items-center justify-center rounded-full bg-white/90 text-[var(--color-text-dark)] shadow-[0_12px_28px_rgba(73,45,20,0.12)] transition-all active:scale-[0.96] hover:bg-white md:right-4 md:top-4"
                   aria-label="Close custom order form"
                 >
                   <svg
@@ -420,7 +461,7 @@ export default function CustomOrderModal({
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="inline-flex w-full items-center justify-center rounded-full bg-[#25D366] px-5 py-4 text-base font-semibold text-white shadow-[0_14px_36px_rgba(37,211,102,0.24)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1ebd5a] disabled:opacity-60 disabled:hover:translate-y-0"
+                        className="inline-flex min-h-[48px] w-full items-center justify-center rounded-full bg-[#25D366] px-5 py-3.5 text-base font-semibold text-white shadow-[0_14px_36px_rgba(37,211,102,0.24)] transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 hover:bg-[#1ebd5a] disabled:opacity-60 disabled:hover:translate-y-0"
                       >
                         {isSubmitting ? "Sending..." : "Continue on WhatsApp"}
                       </button>

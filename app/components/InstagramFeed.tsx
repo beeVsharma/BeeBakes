@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { INSTAGRAM_URL } from "@/lib/constants";
@@ -21,15 +21,17 @@ const images = [
 ];
 
 export default function InstagramFeed() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <section className="px-4 py-20 md:py-24">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 grid gap-6 lg:grid-cols-[0.82fr_1.18fr] lg:items-end">
           <div>
-            <p className="mb-3 text-lg md:text-xl font-bold tracking-[0.24em] uppercase text-[var(--color-gold)] italic">
+            <p className="mb-3 text-base md:text-lg font-semibold tracking-[0.1em] uppercase text-[var(--color-gold)]">
               Behind the counter
             </p>
-            <h2 className="balance max-w-md text-3xl font-semibold text-[var(--color-text-dark)] md:text-4xl">
+            <h2 className="balance max-w-md text-3xl font-semibold tracking-[-0.02em] text-[var(--color-text-dark)] md:text-4xl">
               A visual feed that feels a little more like a mosaic
             </h2>
           </div>
@@ -49,11 +51,16 @@ export default function InstagramFeed() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={`${img.alt} — view on Instagram (opens in new tab)`}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 20 }}
+                whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-60px" }}
-                transition={{ delay: idx * 0.08, duration: 0.45 }}
-                className="surface group relative overflow-hidden rounded-[1.5rem] aspect-[4/3] sm:aspect-square md:aspect-[4/3]"
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 34,
+                  delay: shouldReduceMotion ? 0 : idx * 0.08,
+                }}
+                className="surface group relative overflow-hidden rounded-[1.5rem] aspect-[4/3] sm:aspect-square md:aspect-[4/3] transition-transform duration-200 active:scale-[0.98]"
               >
                 <Image
                   src={img.src}

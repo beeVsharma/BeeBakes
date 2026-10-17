@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Star } from "lucide-react";
 
 const testimonials = [
@@ -66,13 +66,20 @@ function TestimonialItem({
   delay?: number;
   className?: string;
 }) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 18 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-70px" }}
-      transition={{ delay, duration: 0.5 }}
-      className={`surface rounded-[1.75rem] p-5 sm:p-6 ${className}`}
+      initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 16 }}
+      whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{
+        type: "spring",
+        stiffness: 300,
+        damping: 34,
+        delay: shouldReduceMotion ? 0 : delay,
+      }}
+      className={`surface rounded-[1.75rem] p-5 sm:p-6 transition-all duration-200 active:scale-[0.98] ${className}`}
     >
       <StarRating rating={testimonial.rating} />
       <p className="pretty mt-4 text-sm leading-relaxed text-[var(--color-text-dark)]">
@@ -91,21 +98,27 @@ function TestimonialItem({
 }
 
 export default function TestimonialsCarousel() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className="grid gap-4 lg:grid-cols-12">
       {/* Featured testimonial */}
       <motion.article
-        initial={{ opacity: 0, y: 18 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-70px" }}
-        transition={{ duration: 0.55 }}
+        initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: 18 }}
+        whileInView={shouldReduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-60px" }}
+        transition={{
+          type: "spring",
+          stiffness: 300,
+          damping: 34,
+        }}
         className="surface rounded-[2rem] p-6 sm:p-7 lg:col-span-7"
       >
-        <p className="text-xs font-medium uppercase tracking-[0.18em] text-[var(--color-gold)]">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-gold)]">
           Featured note
         </p>
         <StarRating rating={testimonials[0].rating} />
-        <p className="pretty mt-5 text-[1.7rem] leading-[1.3] text-[var(--color-text-dark)] md:text-[1.9rem]">
+        <p className="pretty mt-5 text-[1.7rem] leading-[1.28] tracking-[-0.015em] text-[var(--color-text-dark)] md:text-[1.9rem]">
           &ldquo;{testimonials[0].quote}&rdquo;
         </p>
         <div className="mt-7">

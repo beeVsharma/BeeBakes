@@ -27,10 +27,10 @@ export default function ExploreRange({ onSelectProduct }: Props) {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="mb-3 text-lg md:text-xl font-bold tracking-[0.24em] uppercase text-[var(--color-gold)] italic">
+            <p className="mb-3 text-base md:text-lg font-semibold tracking-[0.1em] uppercase text-[var(--color-gold)]">
               Curated range
             </p>
-            <h2 className="balance max-w-xl text-4xl font-semibold leading-[0.96] text-[var(--color-text-dark)] md:text-5xl">
+            <h2 className="balance max-w-xl text-4xl font-semibold leading-[0.96] tracking-[-0.02em] text-[var(--color-text-dark)] md:text-5xl">
               Explore a focused range that still feels complete
             </h2>
           </div>
@@ -56,10 +56,10 @@ export default function ExploreRange({ onSelectProduct }: Props) {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActiveTab(tab)}
-                className={`relative shrink-0 rounded-full px-4 py-2.5 text-sm font-medium ${
+                className={`relative shrink-0 inline-flex min-h-[44px] items-center rounded-full px-5 py-2.5 text-sm font-medium transition-all active:scale-[0.96] ${
                   isActive
-                    ? "bg-[var(--color-text-dark)] text-white"
-                    : "bg-white/75 text-[var(--color-text-muted)] hover:text-[var(--color-text-dark)]"
+                    ? "bg-[var(--color-text-dark)] text-white shadow-sm"
+                    : "bg-white/80 text-[var(--color-text-muted)] hover:text-[var(--color-text-dark)] shadow-xs"
                 }`}
               >
                 {tab}
