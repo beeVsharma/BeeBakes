@@ -16,8 +16,8 @@ export default function Hero() {
             <motion.p
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-lg md:text-xl font-bold tracking-[0.24em] uppercase text-[var(--color-gold)] italic"
+              transition={{ type: "spring", stiffness: 320, damping: 32 }}
+              className="text-base md:text-lg font-semibold tracking-[0.1em] uppercase text-[var(--color-gold)]"
             >
               Bikaner bakery studio
             </motion.p>
@@ -32,8 +32,8 @@ export default function Hero() {
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            className="balance max-w-3xl text-[2.1rem] font-semibold leading-[0.94] text-[var(--color-text-dark)] sm:text-5xl md:text-7xl lg:text-8xl"
+            transition={{ type: "spring", stiffness: 280, damping: 30 }}
+            className="balance max-w-3xl text-[2.1rem] font-semibold leading-[0.94] tracking-[-0.025em] text-[var(--color-text-dark)] sm:text-5xl md:text-7xl lg:text-8xl"
           >
             Custom cakes with a calmer, cleaner finish
           </motion.h1>
@@ -41,7 +41,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.25, duration: 0.75 }}
+            transition={{ delay: 0.15, duration: 0.45 }}
             className="pretty mt-4 max-w-lg text-sm leading-relaxed text-[var(--color-text-muted)] sm:text-base md:text-lg"
           >
             Handmade eggless custom cakes, artisan cookies, and celebration dessert boxes baked fresh to order in Bikaner. Designed with care, balanced sweetness, and delivered with a reliable finish.
@@ -50,50 +50,50 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.65 }}
+            transition={{ delay: 0.25, type: "spring", stiffness: 320, damping: 32 }}
             className="mt-7 flex flex-col gap-3 sm:flex-row sm:gap-4"
           >
             <a
               href="#products"
-              className="inline-flex items-center justify-center rounded-full bg-[var(--color-text-dark)] px-7 py-3.5 text-sm font-medium text-white shadow-[0_14px_36px_rgba(47,34,27,0.18)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:shadow-[0_18px_42px_rgba(159,102,54,0.24)]"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[var(--color-text-dark)] px-7 py-3 text-sm font-medium text-white shadow-[0_14px_36px_rgba(47,34,27,0.18)] transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 hover:bg-[var(--color-gold)] hover:shadow-[0_18px_42px_rgba(159,102,54,0.24)]"
             >
               Browse the collection
             </a>
             <a
               href="#custom-cakes"
-              className="inline-flex items-center justify-center rounded-full border border-[var(--color-card-border)] bg-white/75 px-7 py-3.5 text-sm font-medium text-[var(--color-text-dark)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] hover:shadow-[0_16px_34px_rgba(73,45,20,0.08)]"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[var(--color-card-border)] bg-white/80 px-7 py-3 text-sm font-medium text-[var(--color-text-dark)] shadow-sm transition-all duration-200 active:scale-[0.97] hover:-translate-y-0.5 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)] hover:shadow-[0_16px_34px_rgba(73,45,20,0.08)]"
             >
               Start a custom order
             </a>
           </motion.div>
 
           <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4 md:mt-10">
-            <div className="surface rounded-2xl px-3.5 py-3.5">
-              <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+            <div className="surface rounded-2xl px-3.5 py-3.5 transition-all duration-200 active:scale-[0.98]">
+              <p className="text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)] font-medium">
                 Turnaround
               </p>
               <p className="mt-1 text-base font-semibold text-[var(--color-text-dark)]">
                 24 to 48 hrs
               </p>
             </div>
-            <div className="surface rounded-2xl px-3.5 py-3.5">
-              <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+            <div className="surface rounded-2xl px-3.5 py-3.5 transition-all duration-200 active:scale-[0.98]">
+              <p className="text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)] font-medium">
                 Baking
               </p>
               <p className="mt-1 text-base font-semibold text-[var(--color-text-dark)]">
                 100% Eggless
               </p>
             </div>
-            <div className="surface rounded-2xl px-3.5 py-3.5">
-              <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+            <div className="surface rounded-2xl px-3.5 py-3.5 transition-all duration-200 active:scale-[0.98]">
+              <p className="text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)] font-medium">
                 Experience
               </p>
               <p className="mt-1 text-base font-semibold text-[var(--color-text-dark)]">
                 500+ Orders
               </p>
             </div>
-            <div className="surface rounded-2xl px-3.5 py-3.5">
-              <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-text-muted)]">
+            <div className="surface rounded-2xl px-3.5 py-3.5 transition-all duration-200 active:scale-[0.98]">
+              <p className="text-[11px] uppercase tracking-[0.14em] text-[var(--color-text-muted)] font-medium">
                 Ordering
               </p>
               <p className="mt-1 text-base font-semibold text-[var(--color-text-dark)]">
@@ -158,8 +158,8 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 surface max-w-[90%] rounded-[1.5rem] px-5 py-3.5 shadow-[0_20px_50px_rgba(73,45,20,0.16)] sm:left-6 sm:translate-x-0 sm:max-w-xs">
-            <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-[var(--color-gold)]">
+          <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 apple-glass-card max-w-[90%] rounded-[1.5rem] px-5 py-3.5 shadow-[0_20px_50px_rgba(73,45,20,0.16)] sm:left-6 sm:translate-x-0 sm:max-w-xs transition-transform duration-200 active:scale-[0.98]">
+            <p className="text-[10px] uppercase tracking-[0.16em] font-semibold text-[var(--color-gold)]">
               Handcrafted in Bikaner
             </p>
             <p className="mt-1 text-xs text-[var(--color-text-muted)] leading-relaxed">

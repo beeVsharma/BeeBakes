@@ -29,8 +29,18 @@ import {
 export default function Home() {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [isCustomOrderOpen, setIsCustomOrderOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
+
+  const dismissSplash = () => {
+    try {
+      sessionStorage.setItem("beebakes_splash_shown", "1");
+    } catch {
+      // ignore storage errors
+    }
+    setIsLoading(false);
+    document.body.style.overflow = "";
+  };
 
   const handleEmailClick = () => {
     const email = BUSINESS_EMAIL;
@@ -55,14 +65,30 @@ export default function Home() {
   };
 
   useEffect(() => {
-    // Lock scroll and reset position so splash is always centred in viewport
+    // Check if user already saw the splash screen in this session, or prefers reduced motion
+    const prefersReducedMotion =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let alreadyShown = false;
+    try {
+      alreadyShown = Boolean(sessionStorage.getItem("beebakes_splash_shown"));
+    } catch {
+      // ignore
+    }
+
+    if (prefersReducedMotion || alreadyShown) {
+      setIsLoading(false);
+      return;
+    }
+
+    // First visit in session: brief 1.2s introduction
+    setIsLoading(true);
     window.scrollTo(0, 0);
     document.body.style.overflow = "hidden";
 
     const timer = setTimeout(() => {
-      setIsLoading(false);
-      document.body.style.overflow = "";
-    }, 5000);
+      dismissSplash();
+    }, 1200);
 
     return () => {
       clearTimeout(timer);
@@ -72,7 +98,7 @@ export default function Home() {
 
   return (
     <>
-      <SplashScreen isVisible={isLoading} />
+      <SplashScreen isVisible={isLoading} onDismiss={dismissSplash} />
       <div
         className="transition-opacity duration-700"
         style={{
